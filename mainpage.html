@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLM Portal</title>
+    <link rel="preload" href="main/background.svg" as="image">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="logo">
+            <img src="main/plm.svg" alt="PLM Logo">
+        </div>
+        
+        <h1 class="welcome-title">Welcome to Pamantasan ng Lungsod ng Maynila Portal</h1>
+        
+        <p class="subtitle">Choose your role to continue</p>
+
+        <div class="role-cards">
+            <!-- Administrator Card -->
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-icon admin-icon">
+                        <img src="main/admin.svg" alt="Admin Icon">
+                    </div>
+                    <div class="role-info">
+                        <div class="role-title">Administrator</div>
+                        <div class="role-description">Configure system and user accounts</div>
+                    </div>
+                </div>
+                <button class="continue-button" onclick="handleRoleSelection('administrator')">Continue as Administrator</button>
+            </div>
+
+            <!-- Student Card -->
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-icon student-icon">
+                        <img src="main/student.svg" alt="Student Icon">
+                    </div>
+                    <div class="role-info">
+                        <div class="role-title">Student</div>
+                        <div class="role-description">View enrolled courses and schedules</div>
+                    </div>
+                </div>
+                <button class="continue-button" onclick="handleRoleSelection('student')">Continue as Student</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleRoleSelection(role) {
+            if (role === 'administrator') {
+                    window.location.href = '/admin.html';
+            } else if (role === 'student') {
+                window.location.href = '/student.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLM Portal - Admin Login</title>
+    <link rel="preload" href="admin/background.svg" as="image">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="logo">
+                <img src="admin/plm.svg" alt="PLM Logo">
+            </div>
+            <div class="welcome-text">
+                Welcome to<br>PLM Portal
+            </div>
+        </div>
+
+        <div class="login-card">
+            <a class="back-button" onclick="BackButton(); return false;">
+                <svg class="back-arrow" viewBox="0 0 14 10" fill="none">
+                    <path d="M1 5H13M1 5L5 1M1 5L5 9" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back
+            </a>
+
+            <div class="form-group">
+                <label class="form-label" for="admin-username">Username</label>
+                <input type="text" id="admin-username" name="admin-username" class="form-input" placeholder="juandelacruz">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="admin-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="admin-password" name="admin-password" class="form-input" placeholder="••••••••••">
+                    <img id="admin-eye-icon" class="toggle-password" onclick="togglePassword()" src="admin/passOn.svg" alt="Toggle password visibility">
+                </div>
+            </div>
+
+            <button class="login-button" onclick="handleLogin()">Log in</button>
+
+            <div class="form-footer">
+                <label class="remember-me">
+                    <input type="checkbox" id="admin-remember" name="admin-remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="forgotPassword(); return false;">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('admin-password');
+            const eyeIcon = document.getElementById('admin-eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.src = 'admin/passOff.svg';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.src = 'admin/passOn.svg';
+            }
+        }
+
+        // Load saved username on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedUsername = localStorage.getItem('adminRememberedUsername');
+            const rememberChecked = localStorage.getItem('adminRememberMe');
+            
+            if (savedUsername && rememberChecked === 'true') {
+                document.getElementById('admin-username').value = savedUsername;
+                document.getElementById('admin-remember').checked = true;
+            }
+        });
+
+        function handleLogin() {
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+            const rememberMe = document.getElementById('admin-remember').checked;
+            
+            if (username && password) {
+                const validAccounts = {
+                    'admin1': 'admin123',
+                    'admin2': 'password456',
+                    'admin3': 'plmadmin'
+                };
+                
+                if (validAccounts[username] && validAccounts[username] === password) {
+                    // Handle remember me functionality
+                    if (rememberMe) {
+                        localStorage.setItem('adminRememberedUsername', username);
+                        localStorage.setItem('adminRememberMe', 'true');
+                    } else {
+                        localStorage.removeItem('adminRememberedUsername');
+                        localStorage.removeItem('adminRememberMe');
+                    }
+                    
+                    alert('Login successful! Welcome, ' + username);
+                    // Uncomment to redirect:
+                    window.location.href = 'adminPage.html';
+                } else {
+                    alert('Invalid username or password!');
+                }
+            } else {
+                alert('Please enter both username and password');
+            }
+        }
+
+        function BackButton() {
+            window.location.href = 'mainpage.html';
+        }
+
+        function forgotPassword() {
+            alert('Please contact icto@plm.edu.ph to reset your password.');
+        }
+
+        document.getElementById('admin-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+    </script>
+</body>
+</html>

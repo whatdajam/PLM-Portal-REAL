@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLM Portal - Student Login</title>
+    <link rel="preload" href="student/background.svg" as="image">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="logo">
+                <img src="student/plm.svg" alt="PLM Logo">
+            </div>
+            <div class="welcome-text">
+                Welcome to<br>PLM Portal
+            </div>
+        </div>
+
+        <div class="login-card">
+            <a class="back-button" onclick="BackButton(); return false;">
+                <svg class="back-arrow" viewBox="0 0 14 10" fill="none">
+                    <path d="M1 5H13M1 5L5 1M1 5L5 9" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back
+            </a>
+
+            <div class="form-group">
+                <label class="form-label" for="student-number">Student Number</label>
+                <input type="text" id="student-number" name="student-number" class="form-input" placeholder="202012345">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="student-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="student-password" name="student-password" class="form-input" placeholder="••••••••••">
+                    <img id="student-eye-icon" class="toggle-password" onclick="togglePassword()" src="student/passOn.svg" alt="Toggle password visibility">
+                </div>
+            </div>
+
+            <button class="login-button" onclick="handleLogin()">Log in</button>
+
+            <div class="form-footer">
+                <label class="remember-me">
+                    <input type="checkbox" id="student-remember" name="student-remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="forgotPassword(); return false;">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('student-password');
+            const eyeIcon = document.getElementById('student-eye-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.src = 'student/passOff.svg';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.src = 'student/passOn.svg';
+            }
+        }
+
+        // Load saved student number on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedStudentNumber = localStorage.getItem('studentRememberedNumber');
+            const rememberChecked = localStorage.getItem('studentRememberMe');
+            
+            if (savedStudentNumber && rememberChecked === 'true') {
+                document.getElementById('student-number').value = savedStudentNumber;
+                document.getElementById('student-remember').checked = true;
+            }
+        });
+
+        function handleLogin() {
+            if (!validateStudentNumber()) {
+                return;
+            }
+
+            const studentNumber = document.getElementById('student-number').value;
+            const password = document.getElementById('student-password').value;
+            const rememberMe = document.getElementById('student-remember').checked;
+            
+            if (studentNumber && password) {
+                const validAccounts = {
+                    '2021100001': 'student123',
+                    '2021100002': 'password456',
+                    '2022100001': 'plmstudent'
+                };
+                
+                if (validAccounts[studentNumber] && validAccounts[studentNumber] === password) {
+                    // Handle remember me functionality
+                    if (rememberMe) {
+                        localStorage.setItem('studentRememberedNumber', studentNumber);
+                        localStorage.setItem('studentRememberMe', 'true');
+                    } else {
+                        localStorage.removeItem('studentRememberedNumber');
+                        localStorage.removeItem('studentRememberMe');
+                    }
+                    
+                    window.location.href = 'studentdashboard.html';
+                } else {
+                    alert('Invalid student number or password!');
+                }
+            } else {
+                alert('Please enter both student number and password');
+            }
+        }
+
+        function validateStudentNumber() {
+            const studentNumber = document.getElementById('student-number').value;
+            
+            if (studentNumber.length > 0 && !/^\d+$/.test(studentNumber)) {
+                alert('Student number must contain only numbers!');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function BackButton() {
+            window.location.href = 'mainpage.html';
+        }
+
+        function forgotPassword() {
+            alert('Please contact icto@plm.edu.ph to reset your password.');
+        }
+
+        document.getElementById('student-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+    </script>
+</body>
+</html>
