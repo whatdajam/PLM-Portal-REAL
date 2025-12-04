@@ -15,6 +15,9 @@ body {
     overflow: hidden;
 }
 
+/* ========================================
+   SIDEBAR & NAV
+   ======================================== */
 .sidebar {
     width: 213px;
     background: #000E46;
@@ -100,7 +103,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-
+/* Sidebar Responsive */
 @media (max-width: 1199px) {
     .sidebar {
         width: 200px;
@@ -136,6 +139,9 @@ body {
     }
 }
 
+/* ========================================
+   MAIN CONTENT & LAYOUT
+   ======================================== */
 .main-content {
     flex: 1;
     padding: 15px 18px; 
@@ -155,6 +161,33 @@ body {
     margin-top: 16px;
 }
 
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h2, h2, h3 {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+/* ========================================
+   STATS & DASHBOARD
+   ======================================== */
 .stats-container {
     background: white;
     border-radius: 12px;
@@ -165,16 +198,6 @@ body {
 
 .stats-header {
     margin-bottom: 20px;
-}
-
-.stats-header h2 {
-    font-size: 15px;
-    font-weight: 300;
-    color: #000000;
-}
-
-h2, h3 {
-    font-weight: 400;
 }
 
 .stats-grid-wrapper {
@@ -238,30 +261,6 @@ h2, h3 {
     height: 32px;
 }
 
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px 30px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.card-header h2 {
-    color: #000000;
-    font-size: 15px;
-    font-weight: 300;
-}
-
 .view-all {
     color: #667eea;
     text-decoration: none;
@@ -273,6 +272,9 @@ h2, h3 {
     text-decoration: underline;
 }
 
+/* ========================================
+   USERS LIST & TABLES
+   ======================================== */
 .users-list {
     display: flex;
     flex-direction: column;
@@ -377,788 +379,7 @@ h2, h3 {
     background: #f8f9fa;
 }
 
-.status-badge {
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.status-badge.active {
-    background: #dbeafe;
-    color: #1e40af;
-}
-
-.status-badge.inactive {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.action-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.view-btn {
-    background: #3b82f6;
-    color: white;
-}
-
-.view-btn:hover {
-    background: #2563eb;
-}
-
-.edit-btn {
-    background: #6b7280;
-    color: white;
-}
-
-.edit-btn:hover {
-    background: #4b5563;
-}
-
-.delete-btn {
-    background: #ef4444;
-    color: white;
-}
-
-.delete-btn:hover {
-    background: #dc2626;
-}
-
-/* ========================================
-   MODAL STYLES
-   ======================================== */
-
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.modal-content {
-    background: white;
-    border-radius: 16px;
-    padding: 32px;
-    max-width: 800px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: slideIn 0.3s ease;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.modal-header {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1a1f3a;
-    margin-bottom: 24px;
-}
-
-.modal-form {
-    display: grid;
-    gap: 20px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-}
-
-.form-row-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-field label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
-}
-
-.form-field input,
-.form-field select {
-    padding: 12px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #1f2937;
-    background: white;
-    transition: all 0.2s ease;
-}
-
-.form-field input:focus,
-.form-field select:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.form-field select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 20px;
-    padding-right: 40px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.modal-btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.cancel-btn {
-    background: #000000;
-    color: white;
-}
-
-.cancel-btn:hover {
-    background: #1f2937;
-}
-
-.confirm-btn {
-    background: #557AF5;
-    color: white;
-}
-
-.confirm-btn:hover {
-    background: #4461d4;
-}
-
-/* ========================================
-   PROFILE PAGE STYLES
-   ======================================== */
-
-.profile-tabs {
-    display: flex;
-    background: #f3f4f6;
-    border-radius: 50px;
-    padding: 4px;
-    gap: 4px;
-    width: 100%;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-}
-
-.tab-btn {
-    flex: 1;
-    padding: 10px 0;
-    background: transparent;
-    border: none;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: center;
-}
-
-.tab-btn.active {
-    background: #ffffff;
-    color: #1a1f3a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-.profile-avatar-section {
-    text-align: center;
-    padding: 30px 0;
-}
-
-.large-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: #9ca3af;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    color: white;
-}
-
-.large-avatar svg {
-    width: 70px;
-    height: 70px;
-}
-
-.profile-name {
-    font-size: 24px;
-    font-weight: 400;
-    color: #1a1f3a;
-    margin-bottom: 8px;
-}
-
-.profile-role {
-    font-size: 14px;
-    color: #999;
-}
-
-.form-grid,
-.form-grid-2 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group + .form-group {
-    margin-top: 16px;
-}
-
-.form-grid .form-group,
-.form-grid-2 .form-group {
-    margin-top: 0;
-}
-
-.form-grid + .form-grid,
-.form-grid + .form-grid-2,
-.form-grid-2 + .form-grid,
-.form-grid-2 + .form-grid-2,
-.form-grid + .form-group,
-.form-grid-2 + .form-group {
-    margin-top: 16px;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1f3a;
-}
-
-.form-input {
-    padding: 12px 16px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #333;
-    width: 100%;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-.input-with-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-icon {
-    position: absolute;
-    left: 12px;
-    width: 20px;
-    height: 20px;
-    color: #9ca3af;
-    pointer-events: none;
-}
-
-.form-input.with-icon {
-    padding-left: 44px;
-}
-
-#profile-tab .card {
-    margin-bottom: 16px;
-    padding: 25px 30px;
-}
-
-@media (min-width: 768px) {
-    .form-grid-2 {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .form-grid,
-    .form-grid-2 {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-row,
-    .form-row-2 {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-content {
-        padding: 24px;
-    }
-
-    .modal-header {
-        font-size: 20px;
-    }
-}
-
-.student-profile-card {
-    background: white;
-    border-radius: 12px;
-    padding: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    margin-bottom: 16px;
-    overflow: hidden;
-}
-
-.profile-card-title {
-    font-size: 15px;
-    font-weight: 300;
-    color: #000000;
-    padding: 25px 30px;
-    margin: 0;
-}
-
-.student-profile-content {
-    padding: 60px 30px 50px;
-    text-align: center;
-}
-
-.student-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: #9ca3af;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    color: white;
-}
-
-.student-avatar svg {
-    width: 70px;
-    height: 70px;
-}
-
-.student-profile-name {
-    font-size: 20px;
-    font-weight: 400;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-}
-
-.student-profile-degree {
-    font-size: 15px;
-    font-weight: 400;
-    color: #6b7280;
-    margin-bottom: 16px;
-}
-
-.student-profile-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #e5e7eb;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #374151;
-}
-
-.badge-separator {
-    color: #9ca3af;
-}
-
-/* ========================================
-   SECURITY TAB STYLES
-   ======================================== */
-
-#security-tab {
-    padding: 0;
-}
-
-.security-wrapper {
-    width: 100%;
-    margin: 0;
-}
-
-.section-title-wrapper {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: #ffffff;
-    padding: 25px 30px;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.lock-icon svg {
-    width: 24px;
-    height: 24px;
-    color: #171717;
-    display: block;
-    margin-top: 2px;
-}
-
-.section-title-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.section-title {
-    font-size: 15px;
-    font-weight: 300;
-    color: #000000;
-    margin: 0;
-}
-
-.section-desc {
-    font-size: 14px;
-    color: #6b7280;
-    margin: 2px 0 0 0;
-}
-
-.security-card {
-    background: #ffffff;
-    padding: 25px 30px;
-    border-radius: 14px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-}
-
-.security-card .card-header {
-    margin-bottom: 20px;
-}
-
-.security-card .card-header h3 {
-    font-size: 17px;
-    font-weight: 400;
-    color: #1a1f3a;
-    margin-bottom: 4px;
-}
-
-.card-header.between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.last-changed {
-    font-size: 13px;
-    color: #6b7280;
-}
-
-.security-input {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 16px;
-}
-
-.security-input label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1f3a;
-}
-
-.security-input input {
-    padding: 12px 16px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    background: #fafafa;
-    font-size: 14px;
-    color: #333;
-    transition: 0.2s ease;
-}
-
-.security-input input:focus {
-    border-color: #667eea;
-    background: #fff;
-    outline: none;
-}
-
-.save-btn {
-    background: #557AF5;
-    color: #fff;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 170px;
-    transition: 0.2s ease;
-    margin-top: 5px;
-}
-
-.save-btn:hover {
-    background: #000E46;
-}
-
-/* --- 1. View Button Styles --- */
-.action-buttons {
-    display: flex;
-    gap: 5px;
-}
-
-.action-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: 500;
-}
-
-.view-btn {
-    background-color: #007bff;
-    color: white;
-}
-
-.view-btn:hover {
-    background-color: #0056b3;
-}
-
-/* --- 2. Modal Base Structure --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: opacity 0.3s;
-    opacity: 0;
-}
-
-.modal-overlay.active {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 800px; /* Default width */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    color: #000E46;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.modal-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.2s;
-}
-
-.cancel-btn {
-    background-color: #6c757d;
-    color: white;
-}
-
-.cancel-btn:hover {
-    background-color: #5a6268;
-}
-
-/* --- 3. Profile Specific Modal Content --- */
-.profile-modal-content {
-    max-width: 900px; /* Wider for profile view */
-}
-
-.profile-details-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px 20px;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.detail-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.detail-item label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-}
-
-.detail-item span {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #343a40;
-    word-break: break-word;
-}
-
-.full-width {
-    grid-column: 1 / -1; /* Address spans full width */
-}
-
-/* Status Badges (Used inside modal) */
-.status-badge {
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.status-badge.active {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.status-badge.inactive {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* --- 4. Schedule Table Styles (Inside Modal) --- */
-.profile-schedule-section h3 {
-    font-size: 1.2rem;
-    color: #000E46;
-    margin-bottom: 10px;
-}
-
-.modal-table-container {
-    max-height: 250px;
-    overflow-y: auto;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-}
-
-.users-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-.users-table thead th {
-    background-color: #f8f9fa;
-    color: #343a40;
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-bottom: 2px solid #dee2e6;
-    position: sticky;
-    top: 0;
-    background: #f8f9fa; /* Ensures header stays on top when scrolling */
-}
-
-.users-table tbody td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dee2e6;
-    font-size: 0.85rem;
-    color: #495057;
-}
-
-/* Specific tweaks for the schedule table rounded corners */
+/* Schedule Table Specifics */
 .schedule-table thead th:first-child {
     border-top-left-radius: 8px;
 }
@@ -1167,385 +388,7 @@ h2, h3 {
     border-top-right-radius: 8px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-image: url('adminPage/background.svg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-}
-
-.sidebar {
-    width: 213px;
-    background: #000E46;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow-y: auto;
-}
-
-.logo-section {
-    padding: 33px 24px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 7px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo-icon {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.logo-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.logo-text {
-    color: white;
-    font-size: 13px;
-    line-height: 1.4;
-    font-weight: 600;
-    text-align: left;
-}
-
-.nav-menu {
-    flex: 1;
-    padding: 5px 0;
-}
-
-.nav-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 5px 20px;
-    color: white;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 25px 0 0 25px;
-    margin: 5px 0;
-}
-
-.nav-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-}
-
-.nav-item.active {
-    background: white;
-    color: #000E46;
-    font-weight: 700;
-    border-right: 3px solid #a1a1a187;
-}
-
-.nav-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-.logout-section {
-    padding: 15px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-
-@media (max-width: 1199px) {
-    .sidebar {
-        width: 200px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 60px;
-        padding: 10px 0;
-        border-radius: 0;
-    }
-    .logo-text,
-    .nav-item span {
-        display: none;
-    }
-    .nav-item {
-        justify-content: center;
-        margin: 4px 0;
-    }
-    .nav-item.active {
-        box-shadow: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 60px;
-    }
-    .logo-text,
-    .nav-item span {
-        display: none;
-    }
-}
-
-.main-content {
-    flex: 1;
-    padding: 15px 18px; 
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-.page-content {
-    display: none;
-}
-
-.page-content.active {
-    display: block;
-}
-
-.page-content > * + * {
-    margin-top: 16px;
-}
-
-.stats-container {
-    background: white;
-    border-radius: 12px;
-    padding: 25px 30px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.stats-header {
-    margin-bottom: 20px;
-}
-
-.stats-header h2 {
-    font-size: 15px;
-    font-weight: 300;
-    color: #000000;
-}
-
-h2, h3 {
-    font-weight: 400;
-}
-
-.stats-grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-}
-
-.stat-card,
-.stat-card-full {
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.stat-card-full {
-    width: 100%;
-}
-
-.stat-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.stat-info {
-    flex: 1;
-}
-
-.stat-label {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 8px;
-}
-
-.stat-value {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin-bottom: 4px;
-}
-
-.stat-subtitle {
-    font-size: 12px;
-    color: #999;
-}
-
-.stat-icon {
-    width: 60px;
-    height: 60px;
-    background: #f0f0f0;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-}
-
-.stat-icon svg {
-    width: 32px;
-    height: 32px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px 30px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.card-header h2 {
-    color: #000000;
-    font-size: 15px;
-    font-weight: 300;
-}
-
-.view-all {
-    color: #667eea;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.view-all:hover {
-    text-decoration: underline;
-}
-
-.users-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    overflow-y: auto;
-}
-
-.user-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.user-item:last-child {
-    border-bottom: none;
-}
-
-.user-info {
-    flex: 1;
-}
-
-.user-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1a1f3a;
-    margin-bottom: 4px;
-}
-
-.user-email {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 4px;
-}
-
-.user-role {
-    font-size: 12px;
-    color: #999;
-}
-
-.verified-badge {
-    background: #00FF8580;
-    color: #00723B;
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.create-user-btn {
-    background: #1a1f3a;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.create-user-btn:hover {
-    background: #2a2f4a;
-}
-
-.table-container {
-    overflow-x: auto;
-}
-
-.users-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.users-table thead {
-    background: #f8f9fa;
-}
-
-.users-table th {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: 600;
-    color: #666;
-    border-bottom: 2px solid #e5e7eb;
-}
-
-.users-table td {
-    padding: 12px 16px;
-    font-size: 14px;
-    color: #333;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.users-table tbody tr {
-    transition: background 0.2s ease;
-}
-
-.users-table tbody tr:hover {
-    background: #f8f9fa;
-}
-
+/* Status Badges */
 .status-badge {
     padding: 4px 12px;
     border-radius: 4px;
@@ -1554,16 +397,17 @@ h2, h3 {
     display: inline-block;
 }
 
-.status-badge.active {
+.status-badge.active, .badge-active {
     background: #dbeafe;
     color: #1e40af;
 }
 
-.status-badge.inactive {
+.status-badge.inactive, .badge-inactive {
     background: #fee2e2;
     color: #991b1b;
 }
 
+/* Action Buttons */
 .action-buttons {
     display: flex;
     gap: 8px;
@@ -1583,27 +427,23 @@ h2, h3 {
     background: #3b82f6;
     color: white;
 }
-
-.view-btn:hover {
-    background: #2563eb;
-}
+.view-btn:hover { background: #2563eb; }
 
 .edit-btn {
     background: #6b7280;
     color: white;
 }
-
-.edit-btn:hover {
-    background: #4b5563;
-}
+.edit-btn:hover { background: #4b5563; }
 
 .delete-btn {
     background: #ef4444;
     color: white;
 }
-
-.delete-btn:hover {
-    background: #dc2626;
+.delete-btn:hover { background: #dc2626; }
+.delete-btn:disabled {
+    background-color: #e2e6ea;
+    color: #6c757d;
+    cursor: not-allowed;
 }
 
 /* ========================================
@@ -1630,12 +470,8 @@ h2, h3 {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes slideIn {
@@ -1655,10 +491,12 @@ h2, h3 {
     padding: 32px;
     max-width: 800px;
     width: 90%;
+    height: auto; 
     max-height: 90vh;
     overflow-y: auto;
     animation: slideIn 0.3s ease;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: height 0.3s ease;
 }
 
 .modal-header {
@@ -1689,6 +527,7 @@ h2, h3 {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 0; /* Important for grid shrinking */
 }
 
 .form-field label {
@@ -1715,7 +554,6 @@ h2, h3 {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* --- Added style for Disabled Inputs (e.g. Student Number) --- */
 .form-field input.input-disabled,
 .form-field input:disabled {
     background-color: #f3f4f6;
@@ -1725,13 +563,26 @@ h2, h3 {
 }
 
 .form-field select {
+    width: 100%; /* Important for grid alignment */
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1f2937;
+    background: white;
+    transition: all 0.2s ease;
+    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 20px;
-    padding-right: 40px;
+    padding-right: 40px; 
 }
 
 .modal-actions {
@@ -1755,24 +606,17 @@ h2, h3 {
     background: #000000;
     color: white;
 }
-
-.cancel-btn:hover {
-    background: #1f2937;
-}
+.cancel-btn:hover { background: #1f2937; }
 
 .confirm-btn {
     background: #557AF5;
     color: white;
 }
-
-.confirm-btn:hover {
-    background: #4461d4;
-}
+.confirm-btn:hover { background: #4461d4; }
 
 /* ========================================
    PROFILE PAGE STYLES
    ======================================== */
-
 .profile-tabs {
     display: flex;
     background: #f3f4f6;
@@ -2022,7 +866,6 @@ h2, h3 {
 /* ========================================
    SECURITY TAB STYLES
    ======================================== */
-
 #security-tab {
     padding: 0;
 }
@@ -2147,232 +990,241 @@ h2, h3 {
     background: #000E46;
 }
 
-/* --- 1. View Button Styles --- */
-.action-buttons {
-    display: flex;
-    gap: 5px;
+/* ========================================
+   USER TYPE SELECTION MODAL
+   ======================================== */
+.user-type-modal {
+    max-width: 500px; /* Widened for larger icons */
+    padding: 40px;
+    background: white;
 }
 
-.action-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: 500;
+.user-type-modal .modal-header {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #1a1f3a;
 }
 
-.view-btn {
-    background-color: #007bff;
-    color: white;
-}
-
-.view-btn:hover {
-    background-color: #0056b3;
-}
-
-/* --- 2. Modal Base Structure --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
+/* --- CHANGE THIS FROM GRID TO FLEX --- */
+.user-type-options {
+    display: flex; /* Changed from grid to flex */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    transition: opacity 0.3s;
-    opacity: 0;
+    gap: 30px; 
 }
 
-.modal-overlay.active {
+/* --- ENSURE THE LINE HAS THESE PROPERTIES --- */
+.vertical-line {
+    width: 2px;
+    min-width: 2px; /* Critical: Prevents the line from being squished to 0px */
+    height: 55px;
+    background-color: #75757559;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 45px;
+}
+
+/* --- UPDATE MOBILE RESPONSIVENESS --- */
+@media (max-width: 640px) {
+    .user-type-options {
+        flex-direction: column; /* Stacks them vertically on mobile */
+        gap: 30px;
+    }
+
+    /* Turns the vertical line into a horizontal divider on mobile */
+    .vertical-line {
+        width: 100%;
+        height: 2px;
+        min-height: 2px;
+        margin: 10px 0;
+    }
+}
+
+/* The clickable card container - STRIPPED OF VISUAL STYLES */
+.user-type-card {
+    background: transparent;
+    padding: 0;
     display: flex;
-    opacity: 1;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    width: 90%;
-    max-width: 800px; /* Default width */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.modal-header {
-    color: #000E46;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 25px;
-}
-
-.modal-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     cursor: pointer;
+    border: none;
+    box-shadow: none;
+    transition: transform 0.2s ease;
+}
+
+/* Pop effect on hover */
+.user-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* The container for the image */
+.user-type-icon {
+    width: 180px;  /* Large square size for the button */
+    height: 180px;
+    background: transparent;
+    border-radius: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+/* The Image itself */
+.user-type-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.user-type-label {
+    font-size: 20px;
     font-weight: 600;
-    transition: background-color 0.2s;
+    color: #1a1a1a;
 }
 
-.cancel-btn {
-    background-color: #6c757d;
-    color: white;
+@media (max-width: 640px) {
+    .user-type-options {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
 
-.cancel-btn:hover {
-    background-color: #5a6268;
+/* Custom grid ratio: Wide - Standard - Standard */
+.form-row.wide-first-col {
+    grid-template-columns: 2fr 1fr 1fr; 
 }
 
-/* --- 3. Profile Specific Modal Content --- */
-.profile-modal-content {
-    max-width: 900px; /* Wider for profile view */
+/* Ensure it stacks correctly on mobile */
+@media (max-width: 768px) {
+    .form-row.wide-first-col {
+        grid-template-columns: 1fr;
+    }
 }
+
+/* ========================================
+   VIEW STUDENT MODAL STYLES (Fix for Messy Layout)
+   ======================================== */
 
 .profile-details-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px 20px;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+    gap: 24px;                             /* Space between items */
+    margin-bottom: 30px;                   /* Space below the grid before the table */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;      /* Divider line */
 }
 
 .detail-item {
     display: flex;
     flex-direction: column;
+    gap: 6px; /* Space between Label and Value */
+}
+
+/* Make the address span across both columns if needed */
+.detail-item.full-width {
+    grid-column: span 2;
 }
 
 .detail-item label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #999;
+    font-size: 13px;
     text-transform: uppercase;
-    margin-bottom: 3px;
+    letter-spacing: 0.5px;
+    color: #6b7280; /* Grey text for label */
+    font-weight: 600;
 }
 
 .detail-item span {
-    font-size: 1rem;
+    font-size: 16px;
+    color: #111827; /* Dark text for value */
     font-weight: 500;
-    color: #343a40;
-    word-break: break-word;
 }
 
-.full-width {
-    grid-column: 1 / -1; /* Address spans full width */
-}
-
-/* Status Badges (Used inside modal) */
-.status-badge {
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-}
-
-.status-badge.active {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.status-badge.inactive {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* --- 4. Schedule Table Styles (Inside Modal) --- */
+/* Header for the Class Schedule section */
 .profile-schedule-section h3 {
-    font-size: 1.2rem;
-    color: #000E46;
-    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1f3a;
+    margin-bottom: 15px;
 }
 
-.modal-table-container {
-    max-height: 250px;
-    overflow-y: auto;
-    border: 1px solid #dee2e6;
+/* Mobile Responsive */
+@media (max-width: 640px) {
+    .profile-details-grid {
+        grid-template-columns: 1fr; /* Stack in 1 column on mobile */
+        gap: 16px;
+    }
+    
+    .detail-item.full-width {
+        grid-column: span 1;
+    }
+}
+/* ========================================
+   ENLISTMENT TAB STYLES (Fixed Scroll)
+   ======================================== */
+
+/* Container that allows ONLY the table to scroll */
+.modal-table-scrollable {
+    /* 1. Reduce height so it fits with the header/buttons without overflowing the screen */
+    max-height: 35vh;         
+    
+    /* 2. Prevent the scroll from chaining to the parent modal */
+    overscroll-behavior: contain; 
+    
+    overflow-y: auto;         
+    overflow-x: hidden;       
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    background: white;
+    scrollbar-width: thin;    
 }
 
-.users-table {
+/* Ensure the table takes full width */
+.enlistment-table {
     width: 100%;
-    border-collapse: separate;
+    border-collapse: separate; 
     border-spacing: 0;
 }
 
-.users-table thead th {
-    background-color: #f8f9fa;
-    color: #343a40;
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-bottom: 2px solid #dee2e6;
+/* Sticky Header: Keeps column names visible while scrolling rows */
+.enlistment-table thead th {
     position: sticky;
     top: 0;
-    background: #f8f9fa; /* Ensures header stays on top when scrolling */
+    z-index: 10;
+    background: #f8f9fa; /* Must match background to hide scrolling rows */
+    border-bottom: 2px solid #e5e7eb;
+    border-top: none;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.05); /* Adds subtle shadow to header */
 }
 
-.users-table tbody td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dee2e6;
-    font-size: 0.85rem;
-    color: #495057;
-}
+/* Fix corner borders for sticky header */
+.enlistment-table thead th:first-child { border-top-left-radius: 0; }
+.enlistment-table thead th:last-child { border-top-right-radius: 0; }
 
-/* Specific tweaks for the schedule table rounded corners */
-.schedule-table thead th:first-child {
-    border-top-left-radius: 8px;
-}
-
-.schedule-table thead th:last-child {
-    border-top-right-radius: 8px;
-}
-
-/* --- Button States --- */
-.delete-btn {
-    cursor: pointer;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-.delete-btn:disabled {
-    background-color: #e2e6ea;
-    color: #6c757d;
-    cursor: not-allowed;
-}
-
-/* --- Badge States --- */
-.status-badge {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.85em;
+/* Submit Button Specific Color */
+.submit-enlistment-btn {
+    background-color: #557AF5;
     color: white;
 }
 
-.badge-active {
-    background-color: #28a745; /* Green */
+.submit-enlistment-btn:hover {
+    background-color: #000E46;
 }
 
-.badge-inactive {
-    background-color: #6c757d; /* Gray */
+/* Adjust layout of tabs inside the modal */
+.modal-content .profile-tabs {
+    margin-bottom: 25px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.modal-content .tab-btn {
+    padding: 10px 20px;
 }
