@@ -40,6 +40,12 @@
                 </svg>
                 <span>Enrollment</span>
             </a>
+            <a href="#" class="nav-item" data-page="grades">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="nav-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span>Grades</span>
+            </a>
             <a href="#" class="nav-item" data-page="profile">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="nav-icon">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -249,7 +255,7 @@
                 </div>
                 </div>
                 <div class="table-wrapper">
-                    <table>
+                    <table class="schedule-table">
                         <thead>
                             <tr>
                                 <th>Course</th>
@@ -532,7 +538,107 @@
                 </div>
             </div>
         </div>
-
+        <!-- Grades Page -->
+        <div id="grades-page" class="page-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Grades</h2>
+                    <div class="filter-dropdowns">
+                        <div class="filter-dropdown">
+                            <select id="gradesSchoolYear">
+                                <option value="" disabled selected>School Year</option>
+                                <option value="2020-2021">2020-2021</option>
+                                <option value="2021-2022">2021-2022</option>
+                                <option value="2022-2023">2022-2023</option>
+                                <option value="2023-2024">2023-2024</option>
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
+                            <select id="gradesSemester">
+                                <option value="" disabled selected>Semester</option>
+                                <option value="1">First Semester</option>
+                                <option value="2">Second Semester</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Code</th>
+                                <th>Units</th>
+                                <th>Grade</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Object Oriented Programming</td>
+                                <td>CSC 0212</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Logic Design and Digital Computer Circuits</td>
+                                <td>CSC 0213</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Operation Research</td>
+                                <td>CSC 0224</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ethics</td>
+                                <td>ETH 0008</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Information Management</td>
+                                <td>ICC 0105</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Living in the IT Era</td>
+                                <td>ITE 0001</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Understanding the Self</td>
+                                <td>UTS 0003</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Group Games</td>
+                                <td>PATHFIT 306</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td><span class="remark-badge passed">Passed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="semester-gwa">
+                    <span id="semester-gwa-display">Semester GWA: --</span>
+                </div>
+            </div>
+        </div>
+            
         <!-- Profile Page -->
         <div id="profile-page" class="page-content">
             <div class="profile-tabs">
@@ -821,6 +927,67 @@
                 });
             }
         });
+
+        // Grades dropdown functionality
+        const gradesSchoolYear = document.getElementById('gradesSchoolYear');
+        const gradesSemester = document.getElementById('gradesSemester');
+
+        if (gradesSchoolYear && gradesSemester) {
+            gradesSchoolYear.addEventListener('change', function() {
+                console.log('School Year selected:', this.value);
+                // Add your logic to filter grades by school year
+            });
+
+            gradesSemester.addEventListener('change', function() {
+                console.log('Semester selected:', this.value);
+                // Add your logic to filter grades by semester
+            });
+        }
+
+        // Calculate Semester GWA
+        function calculateSemesterGWA() {
+            const gradesTable = document.querySelector('.grades-table tbody');
+            if (!gradesTable) return;
+            
+            const rows = gradesTable.querySelectorAll('tr');
+            let totalWeightedGrade = 0;
+            let totalUnits = 0;
+            
+            rows.forEach(row => {
+                const units = parseInt(row.cells[2].textContent);
+                const grade = parseFloat(row.cells[3].textContent);
+                
+                if (!isNaN(units) && !isNaN(grade)) {
+                    totalWeightedGrade += (grade * units);
+                    totalUnits += units;
+                }
+            });
+            
+            const gwa = totalUnits > 0 ? (totalWeightedGrade / totalUnits).toFixed(2) : 0;
+            
+            const gwaDisplay = document.getElementById('semester-gwa-display');
+            if (gwaDisplay) {
+                gwaDisplay.textContent = `Semester GWA: ${gwa}`;
+            }
+        }
+
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateSemesterGWA();
+        });
+
+        // Recalculate when filters change (optional - if you add filter functionality later)
+        if (gradesSchoolYear && gradesSemester) {
+            gradesSchoolYear.addEventListener('change', function() {
+                console.log('School Year selected:', this.value);
+                calculateSemesterGWA();
+            });
+
+            gradesSemester.addEventListener('change', function() {
+                console.log('Semester selected:', this.value);
+                calculateSemesterGWA();
+            });
+        }
 
     </script>
 </body>
