@@ -390,6 +390,31 @@
             </div>
         </div>
     </div>
+    <!-- User Type Selection Modal (Add this BEFORE addStudentModal) -->
+    <div id="userTypeModal" class="modal-overlay">
+        <div class="modal-content user-type-modal">
+            <h2 class="modal-header">Choose which type of user</h2>
+
+            <div class="user-type-options">
+
+                <div class="user-type-card" data-type="student">
+                    <div class="user-type-icon">
+                        <img src="adminPage/student.svg" alt="Student">
+                    </div>
+                    <div class="user-type-label">Student</div>
+                </div>
+
+                <div class="vertical-line"></div>
+
+                <div class="user-type-card" data-type="faculty">
+                    <div class="user-type-icon">
+                        <img src="adminPage/faculty.svg" alt="Faculty">
+                    </div>
+                    <div class="user-type-label">Faculty</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="addStudentModal" class="modal-overlay">
         <div class="modal-content">
@@ -474,11 +499,11 @@
         </div>
     </div>
 
-    <div id="editStudentModal" class="modal-overlay">
+    <!-- Add Faculty Modal -->
+    <div id="addFacultyModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 class="modal-header">Edit Student</h2>
-            <form id="editStudentForm" class="modal-form">
-                <input type="hidden" name="studentIdHidden">
+            <h2 class="modal-header">Add Faculty</h2>
+            <form id="addFacultyForm" class="modal-form">
                 <div class="form-row">
                     <div class="form-field">
                         <label>First Name</label>
@@ -509,6 +534,91 @@
                 </div>
                 <div class="form-row-2">
                     <div class="form-field">
+                        <label>Faculty Number</label>
+                        <input type="text" name="facultyNumber" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Password</label>
+                        <input type="password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-row wide-first-col">
+                    <div class="form-field">
+                        <label>College</label>
+                        <select name="college" id="facultyCollege" required>
+                            <option value="">Select College</option>
+                            <option value="cas">College of Arts and Sciences</option>
+                            <option value="cet">College of Engineering and Technology</option>
+                            <option value="chn">College of Health and Nursing</option>
+                            <option value="cba">College of Business Administration</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>1st Course</label>
+                        <select name="course1" id="facultyCourse1" required>
+                            <option value="">Select College First</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>2nd Course</label>
+                        <select name="course2" id="facultyCourse2">
+                            <option value="N/A">N/A</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="modal-btn cancel-btn" id="cancelFacultyBtn">Cancel</button>
+                    <button type="submit" class="modal-btn confirm-btn">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div id="editStudentModal" class="modal-overlay">
+    <div class="modal-content">
+        
+        <div class="profile-tabs">
+            <button type="button" class="tab-btn active" id="btn-edit-details">Edit Student</button>
+            <button type="button" class="tab-btn" id="btn-edit-enlistment">Enlistment</button>
+        </div>
+
+        <div id="edit-details-tab" class="tab-content active">
+            <h2 class="modal-header">Edit Student Details</h2>
+            <form id="editStudentForm" class="modal-form">
+                <input type="hidden" name="studentIdHidden">
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Middle Name</label>
+                        <input type="text" name="middleName">
+                    </div>
+                    <div class="form-field">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Birth Date</label>
+                        <input type="date" name="birthDate" required>
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-field">
                         <label>Student Number (Cannot be edited)</label>
                         <input type="text" name="studentNumber" class="input-disabled" disabled>
                     </div>
@@ -520,6 +630,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="form-row">
                     <div class="form-field">
                         <label>College</label>
@@ -554,13 +665,90 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="modal-actions">
-                    <button type="button" class="modal-btn cancel-btn" id="cancelEditBtn">Cancel</button>
+                    <button type="button" class="modal-btn cancel-btn" onclick="document.getElementById('editStudentModal').classList.remove('active')">Cancel</button>
                     <button type="submit" class="modal-btn confirm-btn">Save Changes</button>
                 </div>
             </form>
         </div>
+
+        <div id="edit-enlistment-tab" class="tab-content">
+            <h2 class="modal-header">Enlistment</h2>
+            
+            <div class="form-row-2">
+                <div class="form-field">
+                    <label>Year</label>
+                    <select>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Semester</label>
+                    <select>
+                        <option>1st Semester</option>
+                        <option>2nd Semester</option>
+                        <option>Summer</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container modal-table-scrollable">
+                <table class="users-table enlistment-table">
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Description</th>
+                            <th>Section</th>
+                            <th>Schedule</th>
+                            <th>Room</th>
+                            <th>Units</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CS 401</td>
+                            <td>Thesis Writing</td>
+                            <td>Sec 1</td>
+                            <td>M/Th 10:00-11:30 AM</td>
+                            <td>CET-405</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>CS 402</td>
+                            <td>Advanced Database</td>
+                            <td>Sec 1</td>
+                            <td>T/F 1:00-2:30 PM</td>
+                            <td>CET-406</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>CS 403</td>
+                            <td>Software Engineering</td>
+                            <td>Sec 1</td>
+                            <td>W 9:00-12:00 PM</td>
+                            <td>CET-407</td>
+                            <td>3</td>
+                        </tr>
+                        <tr><td>GE 101</td><td>Understanding Self</td><td>Sec 2</td><td>T/Th 7:00-8:30 AM</td><td>GV-305</td><td>3</td></tr>
+                        <tr><td>PE 4</td><td>Team Sports</td><td>Sec 5</td><td>Sat 8:00-10:00 AM</td><td>GYM</td><td>2</td></tr>
+                        <tr><td>CS 404</td><td>Networks II</td><td>Sec 1</td><td>M 1:00-4:00 PM</td><td>CET-LAB2</td><td>3</td></tr>
+                        <tr><td>CS 405</td><td>Machine Learning</td><td>Sec 1</td><td>F 8:00-11:00 AM</td><td>CET-LAB1</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="modal-btn cancel-btn" onclick="document.getElementById('editStudentModal').classList.remove('active')">Cancel</button>
+                <button type="button" class="modal-btn confirm-btn submit-enlistment-btn" id="triggerEnlistmentSubmit">Submit Enlistment</button>
+            </div>
+        </div>
+
     </div>
+</div>
 
     <div id="viewStudentModal" class="modal-overlay">
         <div class="modal-content profile-modal-content">
@@ -773,32 +961,195 @@
             });
         });
 
-        // --- ADD STUDENT MODAL LOGIC ---
-        const addModal = document.getElementById('addStudentModal');
+       // Course data by college
+        const coursesByCollege = {
+            'cas': [
+                'Introduction to Psychology',
+                'General Biology',
+                'College Algebra',
+                'World Literature',
+                'Philippine History',
+                'Introduction to Philosophy',
+                'General Chemistry',
+                'Introduction to Sociology'
+            ],
+            'cet': [
+                'Engineering Drawing',
+                'Computer Programming',
+                'Calculus I',
+                'Physics for Engineers',
+                'Digital Logic Design',
+                'Engineering Mechanics',
+                'Thermodynamics',
+                'Data Structures'
+            ],
+            'chn': [
+                'Anatomy and Physiology',
+                'Fundamentals of Nursing',
+                'Medical Terminology',
+                'Pharmacology',
+                'Community Health Nursing',
+                'Maternal and Child Health',
+                'Nutrition and Diet Therapy',
+                'Pathophysiology'
+            ],
+            'cba': [
+                'Principles of Management',
+                'Financial Accounting',
+                'Business Statistics',
+                'Marketing Management',
+                'Business Law',
+                'Organizational Behavior',
+                'Operations Management',
+                'Economics'
+            ]
+        };
+
+        // --- USER TYPE SELECTION MODAL ---
+        const userTypeModal = document.getElementById('userTypeModal');
+        const addStudentModal = document.getElementById('addStudentModal');
+        const addFacultyModal = document.getElementById('addFacultyModal');
         const openModalBtn = document.getElementById('openModalBtn');
         const cancelBtn = document.getElementById('cancelBtn');
+        const cancelFacultyBtn = document.getElementById('cancelFacultyBtn');
         const addStudentForm = document.getElementById('addStudentForm');
+        const addFacultyForm = document.getElementById('addFacultyForm');
 
+        // Open User Type Selection Modal first
         if(openModalBtn) {
             openModalBtn.addEventListener('click', () => {
-                addModal.classList.add('active');
+                userTypeModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         }
+
+        // Handle User Type Selection
+        const userTypeCards = document.querySelectorAll('.user-type-card');
+        let selectedUserType = 'student';
+
+        userTypeCards.forEach(card => {
+            card.addEventListener('click', function() {
+                selectedUserType = this.getAttribute('data-type');
+                
+                // Close user type modal
+                userTypeModal.classList.remove('active');
+                
+                // Open the appropriate form modal
+                if (selectedUserType === 'student') {
+                    addStudentModal.classList.add('active');
+                } else if (selectedUserType === 'faculty') {
+                    addFacultyModal.classList.add('active');
+                }
+            });
+        });
+
+        // --- FACULTY COLLEGE AND COURSE SELECTION ---
+        const facultyCollege = document.getElementById('facultyCollege');
+        const facultyCourse1 = document.getElementById('facultyCourse1');
+        const facultyCourse2 = document.getElementById('facultyCourse2');
+
+        if (facultyCollege) {
+            facultyCollege.addEventListener('change', function() {
+                const selectedCollege = this.value;
+                
+                // Clear existing options
+                facultyCourse1.innerHTML = '<option value="">Select Course</option>';
+                facultyCourse2.innerHTML = '<option value="N/A">N/A</option>';
+                
+                if (selectedCollege && coursesByCollege[selectedCollege]) {
+                    const courses = coursesByCollege[selectedCollege];
+                    
+                    // Populate 1st Course dropdown
+                    courses.forEach(course => {
+                        const option1 = document.createElement('option');
+                        option1.value = course;
+                        option1.textContent = course;
+                        facultyCourse1.appendChild(option1);
+                    });
+                    
+                    // Populate 2nd Course dropdown
+                    courses.forEach(course => {
+                        const option2 = document.createElement('option');
+                        option2.value = course;
+                        option2.textContent = course;
+                        facultyCourse2.appendChild(option2);
+                    });
+                }
+            });
+        }
+
+        // Prevent selecting the same course twice
+        if (facultyCourse1) {
+            facultyCourse1.addEventListener('change', function() {
+                const selectedCourse = this.value;
+                
+                // Disable the selected course in 2nd dropdown
+                Array.from(facultyCourse2.options).forEach(option => {
+                    if (option.value === selectedCourse && option.value !== 'N/A') {
+                        option.disabled = true;
+                    } else if (option.value !== 'N/A') {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        // Cancel buttons
         if(cancelBtn) {
             cancelBtn.addEventListener('click', () => {
-                addModal.classList.remove('active');
+                addStudentModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 addStudentForm.reset();
             });
         }
+
+        if(cancelFacultyBtn) {
+            cancelFacultyBtn.addEventListener('click', () => {
+                addFacultyModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                addFacultyForm.reset();
+                // Reset course dropdowns
+                facultyCourse1.innerHTML = '<option value="">Select College First</option>';
+                facultyCourse2.innerHTML = '<option value="N/A">N/A</option>';
+            });
+        }
+
+        // Form submissions
         addStudentForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // In a real app, you would collect data and send to server
             alert('Student created successfully!');
-            addModal.classList.remove('active');
+            addStudentModal.classList.remove('active');
             document.body.style.overflow = 'auto';
             addStudentForm.reset();
+        });
+
+        addFacultyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(addFacultyForm);
+            const course1 = formData.get('course1');
+            const course2 = formData.get('course2');
+            
+            if (course1 === course2 && course2 !== 'N/A') {
+                alert('Please select different courses for 1st and 2nd course!');
+                return;
+            }
+            
+            alert('Faculty created successfully!');
+            addFacultyModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            addFacultyForm.reset();
+            // Reset course dropdowns
+            facultyCourse1.innerHTML = '<option value="">Select College First</option>';
+            facultyCourse2.innerHTML = '<option value="N/A">N/A</option>';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // --- EDIT STUDENT MODAL LOGIC (NEW) ---
@@ -966,7 +1317,85 @@
                 document.body.style.overflow = 'auto';
             }
         });
+        // Function to switch tabs inside the Edit Modal
+        function switchEditTab(tabName) {
+            const modal = document.getElementById('editStudentModal');
+            
+            // 1. Get buttons and contents
+            const buttons = modal.querySelectorAll('.profile-tabs .tab-btn');
+            const contents = modal.querySelectorAll('.tab-content');
 
+            // 2. Remove 'active' class from all
+            buttons.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            // 3. Activate the specific tab
+            if(tabName === 'details') {
+                buttons[0].classList.add('active'); // First button
+                document.getElementById('edit-details-tab').classList.add('active');
+            } else {
+                buttons[1].classList.add('active'); // Second button
+                document.getElementById('edit-enlistment-tab').classList.add('active');
+            }
+        }
+        // --- FIX FOR EDIT MODAL TABS ---
+    const btnDetails = document.getElementById('btn-edit-details');
+    const btnEnlistment = document.getElementById('btn-edit-enlistment');
+    const contentDetails = document.getElementById('edit-details-tab');
+    const contentEnlistment = document.getElementById('edit-enlistment-tab');
+
+    // Logic for "Edit Student" Button
+    if (btnDetails) {
+        btnDetails.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevents page jump
+            
+            // Switch Active Button
+            btnDetails.classList.add('active');
+            btnEnlistment.classList.remove('active');
+            
+            // Switch Active Content
+            contentDetails.classList.add('active');
+            contentEnlistment.classList.remove('active');
+        });
+    }
+
+    // Logic for "Enlistment" Button
+    if (btnEnlistment) {
+        btnEnlistment.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevents page jump
+            
+            // Switch Active Button
+            btnEnlistment.classList.add('active');
+            btnDetails.classList.remove('active');
+            
+            // Switch Active Content
+            contentEnlistment.classList.add('active');
+            contentDetails.classList.remove('active');
+        });
+    }
+    // --- CONFIRM ENLISTMENT SUBMISSION (Browser Alert Version) ---
+    const triggerSubmitBtn = document.getElementById('triggerEnlistmentSubmit');
+    const editModalMain = document.getElementById('editStudentModal');
+
+    if (triggerSubmitBtn) {
+        triggerSubmitBtn.addEventListener('click', function() {
+            
+            // 1. Show the browser confirmation dialog (Returns true if OK is clicked)
+            const isConfirmed = confirm("Are you sure you want to submit the enlistment schedule for this student?");
+
+            if (isConfirmed) {
+                // 2. If User clicks "OK":
+                
+                // A. Close the Edit Student Modal
+                editModalMain.classList.remove('active');
+                document.body.style.overflow = 'auto';
+
+                // B. Show Success Alert
+                alert("Enlistment submitted successfully!");
+            } 
+            // If User clicks "Cancel", nothing happens (which is what we want)
+        });
+    }
     </script>
 </body>
 </html>
