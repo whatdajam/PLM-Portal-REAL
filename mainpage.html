@@ -51,15 +51,31 @@
                 </div>
                 <button class="continue-button" onclick="handleRoleSelection('student')">Continue as Student</button>
             </div>
+
+            <!-- Faculty Card -->
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-icon faculty-icon">
+                        <img src="main/faculty.svg" alt="Faculty Icon">
+                    </div>
+                    <div class="role-info">
+                        <div class="role-title">Faculty</div>
+                        <div class="role-description">Manage students and classes</div>
+                    </div>
+                </div>
+                <button class="continue-button" onclick="handleRoleSelection('faculty')">Continue as Faculty</button>
+            </div>
         </div>
     </div>
 
     <script>
         function handleRoleSelection(role) {
             if (role === 'administrator') {
-                    window.location.href = '/admin.html';
+                window.location.href = '/admin.html';
             } else if (role === 'student') {
                 window.location.href = '/student.html';
+            } else if (role === 'faculty') {
+                window.location.href = '/faculty.html';
             }
         }
     </script>
