@@ -70,38 +70,38 @@
             <div class="welcome-card">
                 <div class="welcome-header">
                     <div class="welcome-text">
-                        <h1>Welcome back, <span style="font-weight: 600;">Juan</span>!</h1>
+                        <h1>Welcome back, <span style="font-weight: 600;" id="student-first-name">Student</span>!</h1>
                         <div class="student-details">
                             <div class="detail-item">
                                 <span class="detail-label">Name</span>
-                                <span>Juan Dela Cruz</span>
+                                <span id="student-full-name">Loading...</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Student Number</span>
-                                <span>2020100001</span>
+                                <span id="student-number">Loading...</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Program</span>
-                                <span>BS Computer Science - Year 2</span>
+                                <span id="student-program">Loading...</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Semester</span>
-                                <span>Semester 1</span>
+                                <span id="current-semester">Loading...</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">School Year</span>
-                                <span>2020-2021</span>
+                                <span id="current-school-year">Loading...</span>
                             </div>
                         </div>
                     </div>
                     <div class="avatar">
-                        <img src="sdashboard/profile.svg" alt="Profile Picture">
+                        <img src="sdashboard/profile.svg" alt="Profile Picture" id="student-avatar">
                     </div>
                 </div>
             </div>
 
             <div class="dashboard-grid">
-                <!-- Enrolled Courses Card Layout -->
+                <!-- Enrolled Courses Card -->
                 <div class="card enrolled-courses-card">
                     <div class="enrolled-header">
                         <h2>Enrolled Courses</h2>
@@ -109,77 +109,15 @@
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
-                            8
+                            <span id="course-count">0</span>
                         </div>
                     </div>
 
                     <div class="courses-grid" id="courses-grid">
-                        <div class="course-card">
-                            <span class="status-indicator status-red"></span>
-                            <div class="course-code">CSC 0212</div>
-                            <div class="course-title">Object Oriented Programming</div>
-                            <div class="course-instructor">Joel Cruz</div>
-                            <div class="course-details">Monday 10:00AM-12:00PM · GCA 309</div>
-                        </div>
-
-                        <div class="course-card">
-                            <span class="status-indicator status-orange"></span>
-                            <div class="course-code">ICC 0105</div>
-                            <div class="course-title">Information Management</div>
-                            <div class="course-instructor">Francis Atienza</div>
-                            <div class="course-details">Friday 10:00AM-1:00PM · GCA 313</div>
-                        </div>
-
-                        <div class="course-card">
-                            <span class="status-indicator status-yellow"></span>
-                            <div class="course-code">CSC 0213</div>
-                            <div class="course-title">Logic Design and Digital Computer Circuits</div>
-                            <div class="course-instructor">Elsa Pascual</div>
-                            <div class="course-details">Tuesday 1:00PM-4:00PM · GCA 310</div>
-                        </div>
-
-                        <div class="course-card">
-                            <span class="status-indicator status-green"></span>
-                            <div class="course-code">CSC 0224</div>
-                            <div class="course-title">Operation Research</div>
-                            <div class="course-instructor">Shiela Demegillo</div>
-                            <div class="course-details">Wednesday 8:00AM-10:00AM · GCA 311</div>
-                        </div>
-
-                        <div class="course-card hidden-course">
-                            <span class="status-indicator status-cyan"></span>
-                            <div class="course-code">ITE 0001</div>
-                            <div class="course-title">Living in the IT Era</div>
-                            <div class="course-instructor">Vivien Agustin</div>
-                            <div class="course-details">Monday 1:00PM-4:00PM · GCA 314</div>
-                        </div>
-
-                        <div class="course-card hidden-course">
-                            <span class="status-indicator status-cyan"></span>
-                            <div class="course-code">UTS 0003</div>
-                            <div class="course-title">Understanding the Self</div>
-                            <div class="course-instructor">Sarah Macarareg</div>
-                            <div class="course-details">Tuesday 10:00AM-1:00PM · GCA 315</div>
-                        </div>
-
-                        <div class="course-card hidden-course">
-                            <span class="status-indicator status-blue"></span>
-                            <div class="course-code">ETH 0008</div>
-                            <div class="course-title">Ethics</div>
-                            <div class="course-instructor">Julius Jose</div>
-                            <div class="course-details">Thursday 9:00AM-12:00PM · GCA 312</div>
-                        </div>
-
-                        <div class="course-card hidden-course">
-                            <span class="status-indicator status-purple"></span>
-                            <div class="course-code">PATHFIT 306</div>
-                            <div class="course-title">Group Games</div>
-                            <div class="course-instructor">Joseph Toldoya</div>
-                            <div class="course-details">Wednesday 1:00PM-3:00PM · GCA 316</div>
-                        </div>
+                        <!-- Courses will be populated from database -->
                     </div>
 
-                    <button class="view-more-btn" id="view-more-btn">
+                    <button class="view-more-btn" id="view-more-btn" style="display: none;">
                         <span id="view-more-text">View More</span>
                         <svg id="view-more-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -194,19 +132,19 @@
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-label">GWA:</span>
-                            <span class="stat-value">1.23</span>
+                            <span class="stat-value" id="overall-gwa">--</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Academic Units:</span>
-                            <span class="stat-value">69</span>
+                            <span class="stat-value" id="academic-units">--</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Non-academic Units:</span>
-                            <span class="stat-value">6</span>
+                            <span class="stat-value" id="non-academic-units">--</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label">Total Units Earned:</span>
-                            <span class="stat-value">75</span>
+                            <span class="stat-value" id="total-units-earned">--</span>
                         </div>
                     </div>
                     <div class="progress-container">
@@ -220,11 +158,11 @@
                                 </defs>
                                 <circle class="circle-bg" cx="80" cy="80" r="65" />
                                 <circle class="circle-progress" cx="80" cy="80" r="65" 
-                                        stroke-dasharray="408" stroke-dashoffset="0" />
+                                        stroke-dasharray="408" stroke-dashoffset="0" id="progress-circle"/>
                             </svg>
                             <div class="progress-text">
-                                <div class="progress-percentage">100%</div>
-                                <div class="progress-label">You're doing great!</div>
+                                <div class="progress-percentage" id="progress-percentage">0%</div>
+                                <div class="progress-label" id="progress-label">Keep going!</div>
                             </div>
                         </div>
                     </div>
@@ -238,21 +176,19 @@
                 <div class="card-header">
                     <h2>Course Schedule</h2>
                     <div class="filter-dropdowns">
-                    <div class="filter-dropdown">
-                        <select id="schoolYear" place>
-                            <option value="" disabled>Select School Year</option>
-                            <option value="2024-2025">2023-2024</option>
-                            <option value="2023-2024">2024-2025</option>
-                        </select>
+                        <div class="filter-dropdown">
+                            <select id="schoolYear">
+                                <option value="" disabled selected>Select School Year</option>
+                                <!-- Options will be populated from database -->
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
+                            <select id="semester">
+                                <option value="" disabled selected>Select Semester</option>
+                                <!-- Options will be populated from database -->
+                            </select>
+                        </div>
                     </div>
-                    <div class="filter-dropdown">
-                        <select id="semester">
-                            <option value="" disabled>Select Semester</option>
-                            <option value="1">First Semester</option>
-                            <option value="2">Second Semester</option>
-                        </select>
-                    </div>
-                </div>
                 </div>
                 <div class="table-wrapper">
                     <table class="schedule-table">
@@ -269,95 +205,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Object Oriented Programming</td>
-                                <td>CSC 0212</td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Mon 10:00AM-12:00PM</td>
-                                <td>GCA 309</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>Logic Design and Digital Computer Circuits</td>
-                                <td>CSC 0213</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>Tue 1:00PM-4:00PM</td>
-                                <td>GCA 310</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>Operation Research</td>
-                                <td>CSC 0224</td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Wed 8:00AM-10:00AM</td>
-                                <td>GCA 311</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status inactive">Inactive</td>
-                            </tr>
-                            <tr>
-                                <td>Ethics</td>
-                                <td>ETH 0008</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>Thu 9:00AM-12:00PM</td>
-                                <td>GCA 312</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>Information Management</td>
-                                <td>ICC 0105</td>
-                                <td>3</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Fri 10:00AM-1:00PM</td>
-                                <td>GCA 313</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status inactive">Inactive</td>
-                            </tr>
-                            <tr>
-                                <td>Living in the IT Era</td>
-                                <td>ITE 0001</td>
-                                <td>3</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Mon 1:00PM-4:00PM</td>
-                                <td>GCA 314</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>Understanding the Self</td>
-                                <td>UTS 0003</td>
-                                <td>3</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Tue 10:00AM-1:00PM</td>
-                                <td>GCA 315</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status active">Active</td>
-                            </tr>
-                            <tr>
-                                <td>Group Games</td>
-                                <td>PATHFIT 306</td>
-                                <td>2</td>
-                                <td>0</td>
-                                <td>3</td>
-                                <td>Wed 1:00PM-3:00PM</td>
-                                <td>GCA 316</td>
-                                <td>BSCS 2-3</td>
-                                <td class="status inactive">Inactive</td>
-                            </tr>
+                        <tbody id="schedule-table-body">
+                            <!-- Schedule data will be populated from database -->
                         </tbody>
                     </table>
                 </div>
@@ -367,58 +216,8 @@
                 <div class="card-header">
                     <h2>Weekly Schedule</h2>
                 </div>
-                <div class="weekly-schedule">
-                    <div class="day-column">
-                        <h3>Monday</h3>
-                        <div class="class-card">
-                            <div class="class-title">Object Oriented Programming</div>
-                            <div class="class-details">10:00AM-12:00PM - GCA 309</div>
-                        </div>
-                        <div class="class-card">
-                            <div class="class-title">Living in the IT Era</div>
-                            <div class="class-details">1:00PM-4:00PM - GCA 314</div>
-                        </div>
-                    </div>
-                    
-                    <div class="day-column">
-                        <h3>Tuesday</h3>
-                        <div class="class-card">
-                            <div class="class-title">Logic Design and Digital Circuits</div>
-                            <div class="class-details">1:00PM-4:00PM - GCA 310</div>
-                        </div>
-                        <div class="class-card">
-                            <div class="class-title">Understanding the Self</div>
-                            <div class="class-details">10:00AM-1:00PM - GCA 315</div>
-                        </div>
-                    </div>
-                    
-                    <div class="day-column">
-                        <h3>Wednesday</h3>
-                        <div class="class-card">
-                            <div class="class-title">Operation Research</div>
-                            <div class="class-details">8:00AM-10:00AM - GCA 311</div>
-                        </div>
-                        <div class="class-card">
-                            <div class="class-title">Group Games</div>
-                            <div class="class-details">1:00PM-3:00PM - GCA 316</div>
-                        </div>
-                    </div>
-                    
-                    <div class="day-column">
-                        <h3>Thursday</h3>
-                        <div class="class-card">
-                            <div class="class-title">Ethics</div>
-                            <div class="class-details">9:00AM-12:00PM - GCA 312</div>
-                        </div>
-                    </div>
-                    
-                    <div class="day-column">
-                        <h3>Friday</h3>
-                        <div class="class-card">
-                            <div class="class-title">Information Management</div>
-                            <div class="class-details">10:00AM-1:00PM - GCA 313</div>
-                        </div>
-                    </div>
+                <div class="weekly-schedule" id="weekly-schedule">
+                    <!-- Weekly schedule will be populated from database -->
                 </div>
             </div>
         </div>
@@ -445,87 +244,8 @@
                             <th>Room</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" id="course-1" name="course-1"></td>
-                            <td>Object Oriented Programming</td>
-                            <td>CSC 0212</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Mon 10:00AM-12:00PM</td>
-                            <td>GCA 309</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-2" name="course-2"></td>
-                            <td>Logic Design and Digital Computer Circuits</td>
-                            <td>CSC 0213</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>Tue 1:00PM-4:00PM</td>
-                            <td>GCA 310</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-3" name="course-3"></td>
-                            <td>Operation Research</td>
-                            <td>CSC 0224</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Wed 8:00AM-10:00AM</td>
-                            <td>GCA 311</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-4" name="course-4"></td>
-                            <td>Ethics</td>
-                            <td>ETH 0008</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>3</td>
-                            <td>Thu 9:00AM-12:00PM</td>
-                            <td>GCA 312</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-5" name="course-5"></td>
-                            <td>Information Management</td>
-                            <td>ICC 0105</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Fri 10:00AM-1:00PM</td>
-                            <td>GCA 313</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-6" name="course-6"></td>
-                            <td>Living in the IT Era</td>
-                            <td>ITE 0001</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Mon 1:00PM-4:00PM</td>
-                            <td>GCA 314</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-7" name="course-7"></td>
-                            <td>Understanding the Self</td>
-                            <td>UTS 0003</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Tue 10:00AM-1:00PM</td>
-                            <td>GCA 315</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" id="course-8" name="course-8"></td>
-                            <td>Group Games</td>
-                            <td>PATHFIT 306</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>3</td>
-                            <td>Wed 1:00PM-3:00PM</td>
-                            <td>GCA 316</td>
-                        </tr>
+                    <tbody id="registration-table-body">
+                        <!-- Available courses will be populated from database -->
                     </tbody>
                 </table>
                 
@@ -533,11 +253,12 @@
                     <label><input type="checkbox" id="select-all-bottom"> Select All</label>
                     <div class="right-section">
                         <span id="total-units">Total Units: 0</span>
-                        <button class="submit-btn">Submit Registered Courses</button>
+                        <button class="submit-btn" id="submit-enrollment">Submit Registered Courses</button>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Grades Page -->
         <div id="grades-page" class="page-content">
             <div class="card">
@@ -547,17 +268,13 @@
                         <div class="filter-dropdown">
                             <select id="gradesSchoolYear">
                                 <option value="" disabled selected>School Year</option>
-                                <option value="2020-2021">2020-2021</option>
-                                <option value="2021-2022">2021-2022</option>
-                                <option value="2022-2023">2022-2023</option>
-                                <option value="2023-2024">2023-2024</option>
+                                <!-- Options will be populated from database -->
                             </select>
                         </div>
                         <div class="filter-dropdown">
                             <select id="gradesSemester">
                                 <option value="" disabled selected>Semester</option>
-                                <option value="1">First Semester</option>
-                                <option value="2">Second Semester</option>
+                                <!-- Options will be populated from database -->
                             </select>
                         </div>
                     </div>
@@ -573,63 +290,8 @@
                                 <th>Remark</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Object Oriented Programming</td>
-                                <td>CSC 0212</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Logic Design and Digital Computer Circuits</td>
-                                <td>CSC 0213</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Operation Research</td>
-                                <td>CSC 0224</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Ethics</td>
-                                <td>ETH 0008</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Information Management</td>
-                                <td>ICC 0105</td>
-                                <td>3</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Living in the IT Era</td>
-                                <td>ITE 0001</td>
-                                <td>3</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Understanding the Self</td>
-                                <td>UTS 0003</td>
-                                <td>3</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>Group Games</td>
-                                <td>PATHFIT 306</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td><span class="remark-badge passed">Passed</span></td>
-                            </tr>
+                        <tbody id="grades-table-body">
+                            <!-- Grades will be populated from database -->
                         </tbody>
                     </table>
                 </div>
@@ -648,22 +310,22 @@
 
             <div class="tab-content active" id="profile-tab">
                 <div class="student-profile-card">
-                <h3 class="profile-card-title">Student Profile</h3>
-                <div class="student-profile-content">
-                    <div class="student-avatar">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                        </svg>
-                    </div>
-                    <div class="student-profile-name">Juan Dela Cruz</div>
-                    <div class="student-profile-degree">BS Computer Science</div>
-                    <div class="student-profile-badge">
-                        <span>Year 2</span>
-                        <span class="badge-separator">•</span>
-                        <span>202012345</span>
+                    <h3 class="profile-card-title">Student Profile</h3>
+                    <div class="student-profile-content">
+                        <div class="student-avatar">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                            </svg>
+                        </div>
+                        <div class="student-profile-name" id="profile-full-name">Loading...</div>
+                        <div class="student-profile-degree" id="profile-degree">Loading...</div>
+                        <div class="student-profile-badge">
+                            <span id="profile-year">Year --</span>
+                            <span class="badge-separator">•</span>
+                            <span id="profile-student-number">----------</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 <div class="card">
                     <div class="card-header">
@@ -672,15 +334,15 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-input" value="Juan" placeholder="First Name" disabled>
+                            <input type="text" class="form-input" id="profile-first-name" placeholder="First Name" disabled>
                         </div>
                         <div class="form-group">
                             <label>Middle Name</label>
-                            <input type="text" class="form-input" value="N/A" placeholder="Middle Name" disabled>
+                            <input type="text" class="form-input" id="profile-middle-name" placeholder="Middle Name" disabled>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-input" value="Dela Cruz" placeholder="Last Name" disabled>
+                            <input type="text" class="form-input" id="profile-last-name" placeholder="Last Name" disabled>
                         </div>
                     </div>
                     <div class="form-grid-2">
@@ -690,7 +352,7 @@
                                 <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
-                                <input type="email" class="form-input with-icon" value="juandelacruz@gmail.com" placeholder="Email Address" disabled>
+                                <input type="email" class="form-input with-icon" id="profile-email" placeholder="Email Address" disabled>
                             </div>
                         </div>
                         <div class="form-group">
@@ -699,7 +361,7 @@
                                 <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
-                                <input type="text" class="form-input with-icon" value="01/01/1999" placeholder="MM/DD/YYYY" disabled>
+                                <input type="text" class="form-input with-icon" id="profile-dob" placeholder="MM/DD/YYYY" disabled>
                             </div>
                         </div>
                     </div>
@@ -709,7 +371,7 @@
                             <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
-                            <input type="tel" class="form-input with-icon" value="+63 09991234567" placeholder="Phone Number" disabled>
+                            <input type="tel" class="form-input with-icon" id="profile-phone" placeholder="Phone Number" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -719,7 +381,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
-                            <input type="text" class="form-input with-icon" value="123 Rizal Avenue, Barangay San Antonio, Makati City, 1200, Philippines" placeholder="Address" disabled>
+                            <input type="text" class="form-input with-icon" id="profile-address" placeholder="Address" disabled>
                         </div>
                     </div>
                 </div>
@@ -744,251 +406,30 @@
                     <div class="security-card">
                         <div class="card-header">
                             <h3>Change Password</h3>
-                            <p class="last-changed">Last changed: December 1, 2025</p>
+                            <p class="last-changed" id="password-last-changed">Last changed: --</p>
                         </div>
 
                         <div class="security-input">
                             <label>Current Password</label>
-                            <input type="password" placeholder="Enter current password">
+                            <input type="password" id="current-password" placeholder="Enter current password">
                         </div>
 
                         <div class="security-input">
                             <label>New Password</label>
-                            <input type="password" placeholder="Enter new password">
+                            <input type="password" id="new-password" placeholder="Enter new password">
                         </div>
 
                         <div class="security-input">
                             <label>Confirm New Password</label>
-                            <input type="password" placeholder="Re-enter new password">
+                            <input type="password" id="confirm-password" placeholder="Re-enter new password">
                         </div>
 
-                        <button class="save-btn">Update Password</button>
+                        <button class="save-btn" id="update-password-btn">Update Password</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // View More functionality for courses
-        const viewMoreBtn = document.getElementById('view-more-btn');
-        const viewMoreText = document.getElementById('view-more-text');
-        const viewMoreIcon = document.getElementById('view-more-icon');
-        let isExpanded = false;
-
-        if (viewMoreBtn) {
-            viewMoreBtn.addEventListener('click', () => {
-                isExpanded = !isExpanded;
-                const hiddenCourses = document.querySelectorAll('.hidden-course');
-                
-                if (isExpanded) {
-                    hiddenCourses.forEach(course => {
-                        course.style.display = 'block';
-                    });
-                    viewMoreText.textContent = 'View Less';
-                    viewMoreIcon.style.transform = 'rotate(180deg)';
-                } else {
-                    hiddenCourses.forEach(course => {
-                        course.style.display = 'none';
-                    });
-                    viewMoreText.textContent = 'View More';
-                    viewMoreIcon.style.transform = 'rotate(0deg)';
-                }
-            });
-        }
-
-        // Update total units function
-        function updateTotalUnits() {
-            const registrationTable = document.querySelector('.registration-table tbody');
-            const totalUnitsSpan = document.getElementById('total-units');
-            let total = 0;
-            
-            registrationTable.querySelectorAll('tr').forEach(row => {
-                const checkbox = row.querySelector('input[type="checkbox"]');
-                const units = parseInt(row.cells[5].textContent);
-                if (checkbox.checked) total += units;
-            });
-            
-            totalUnitsSpan.textContent = `Total Units: ${total}`;
-        }
-
-        // Setup select all functionality
-        const selectAllCheckbox = document.getElementById('select-all-bottom');
-        const registrationTable = document.querySelector('.registration-table tbody');
-        const checkboxes = registrationTable.querySelectorAll('input[type="checkbox"]');
-
-        selectAllCheckbox.addEventListener('change', () => {
-            checkboxes.forEach(cb => cb.checked = selectAllCheckbox.checked);
-            updateTotalUnits();
-        });
-
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', () => {
-                selectAllCheckbox.checked = Array.from(checkboxes).every(c => c.checked);
-                updateTotalUnits();
-            });
-        });
-
-        // Initialize total units on page load
-        updateTotalUnits();
-
-        // Navigation functionality
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const page = this.getAttribute('data-page');
-                
-                // Handle logout
-                if (page === 'logout') {
-                    if (confirm('Are you sure you want to logout?')) {
-                        window.location.href = 'student.html';
-                    }
-                    return;
-                }
-                
-                // Remove active class from all nav items
-                navItems.forEach(nav => nav.classList.remove('active'));
-                
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Hide all pages
-                document.querySelectorAll('.page-content').forEach(p => {
-                    p.classList.remove('active');
-                });
-                
-                // Show selected page
-                const selectedPage = document.getElementById(page + '-page');
-                if (selectedPage) {
-                    selectedPage.classList.add('active');
-                }
-            });
-        });
-
-        const tabBtns = document.querySelectorAll('.tab-btn');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                
-                // Remove active class from all tabs
-                tabBtns.forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                const activeTab = document.getElementById(tabName + '-tab');
-                if (activeTab) {
-                    activeTab.classList.add('active');
-                }
-            });
-        });
-
-        // Optional: Form validation for security tab
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password change form validation
-            const passwordForm = document.querySelector('#security-tab form');
-            
-            if (passwordForm) {
-                passwordForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const currentPassword = document.querySelector('input[placeholder="Enter current password"]');
-                    const newPassword = document.querySelector('input[placeholder="Enter new password"]');
-                    const confirmPassword = document.querySelector('input[placeholder="Confirm new password"]');
-                    
-                    if (newPassword.value !== confirmPassword.value) {
-                        alert('New passwords do not match!');
-                        return;
-                    }
-                    
-                    if (newPassword.value.length < 8) {
-                        alert('Password must be at least 8 characters long!');
-                        return;
-                    }
-                    
-                    alert('Password updated successfully!');
-                    passwordForm.reset();
-                });
-            }
-            
-            // Profile form save
-            const profileForm = document.querySelector('#profile-tab form');
-            
-            if (profileForm) {
-                profileForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Profile updated successfully!');
-                });
-            }
-        });
-
-        // Grades dropdown functionality
-        const gradesSchoolYear = document.getElementById('gradesSchoolYear');
-        const gradesSemester = document.getElementById('gradesSemester');
-
-        if (gradesSchoolYear && gradesSemester) {
-            gradesSchoolYear.addEventListener('change', function() {
-                console.log('School Year selected:', this.value);
-                // Add your logic to filter grades by school year
-            });
-
-            gradesSemester.addEventListener('change', function() {
-                console.log('Semester selected:', this.value);
-                // Add your logic to filter grades by semester
-            });
-        }
-
-        // Calculate Semester GWA
-        function calculateSemesterGWA() {
-            const gradesTable = document.querySelector('.grades-table tbody');
-            if (!gradesTable) return;
-            
-            const rows = gradesTable.querySelectorAll('tr');
-            let totalWeightedGrade = 0;
-            let totalUnits = 0;
-            
-            rows.forEach(row => {
-                const units = parseInt(row.cells[2].textContent);
-                const grade = parseFloat(row.cells[3].textContent);
-                
-                if (!isNaN(units) && !isNaN(grade)) {
-                    totalWeightedGrade += (grade * units);
-                    totalUnits += units;
-                }
-            });
-            
-            const gwa = totalUnits > 0 ? (totalWeightedGrade / totalUnits).toFixed(2) : 0;
-            
-            const gwaDisplay = document.getElementById('semester-gwa-display');
-            if (gwaDisplay) {
-                gwaDisplay.textContent = `Semester GWA: ${gwa}`;
-            }
-        }
-
-        // Call the function when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            calculateSemesterGWA();
-        });
-
-        // Recalculate when filters change (optional - if you add filter functionality later)
-        if (gradesSchoolYear && gradesSemester) {
-            gradesSchoolYear.addEventListener('change', function() {
-                console.log('School Year selected:', this.value);
-                calculateSemesterGWA();
-            });
-
-            gradesSemester.addEventListener('change', function() {
-                console.log('Semester selected:', this.value);
-                calculateSemesterGWA();
-            });
-        }
-
-    </script>
+    <script src="sdashboard.js"></script>
 </body>
 </html>
