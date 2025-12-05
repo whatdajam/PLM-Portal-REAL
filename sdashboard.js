@@ -1,42 +1,56 @@
 // ========================================
 // DATABASE CONNECTION FUNCTIONS
 // ========================================
-// TODO: Replace these with your actual database API calls
 
 async function fetchStudentData() {
-    // TODO: Implement API call to fetch student data
-    // Example: return await fetch('/api/student').then(res => res.json());
-    console.log('Fetch student data from database');
+    const response = await fetch('/api/student');
+    if (!response.ok) throw new Error('Failed to fetch student data');
+    return await response.json();
 }
 
 async function fetchEnrolledCourses() {
-    // TODO: Implement API call to fetch enrolled courses
-    console.log('Fetch enrolled courses from database');
+    const response = await fetch('/api/courses/enrolled');
+    if (!response.ok) throw new Error('Failed to fetch enrolled courses');
+    return await response.json();
 }
 
 async function fetchSchedule(schoolYear, semester) {
-    // TODO: Implement API call to fetch schedule
-    console.log('Fetch schedule from database', schoolYear, semester);
+    // Sends the selected year and sem to the server
+    const response = await fetch(`/api/schedule?schoolYear=${schoolYear}&semester=${semester}`);
+    if (!response.ok) throw new Error('Failed to fetch schedule');
+    return await response.json();
 }
 
 async function fetchAvailableCourses() {
-    // TODO: Implement API call to fetch available courses for enrollment
-    console.log('Fetch available courses from database');
+    const response = await fetch('/api/courses/available');
+    if (!response.ok) throw new Error('Failed to fetch available courses');
+    return await response.json();
 }
 
 async function fetchGrades(schoolYear, semester) {
-    // TODO: Implement API call to fetch grades
-    console.log('Fetch grades from database', schoolYear, semester);
+    const response = await fetch(`/api/grades?schoolYear=${schoolYear}&semester=${semester}`);
+    if (!response.ok) throw new Error('Failed to fetch grades');
+    return await response.json();
 }
 
 async function submitEnrollment(selectedCourses) {
-    // TODO: Implement API call to submit enrollment
-    console.log('Submit enrollment to database', selectedCourses);
+    const response = await fetch('/api/enrollment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courses: selectedCourses })
+    });
+    if (!response.ok) throw new Error('Failed to submit enrollment');
+    return await response.json();
 }
 
 async function updatePassword(currentPassword, newPassword) {
-    // TODO: Implement API call to update password
-    console.log('Update password in database');
+    const response = await fetch('/api/student/password', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword, newPassword })
+    });
+    if (!response.ok) throw new Error('Failed to update password');
+    return await response.json();
 }
 
 // ========================================
@@ -45,30 +59,43 @@ async function updatePassword(currentPassword, newPassword) {
 
 function populateStudentInfo(data) {
     // Dashboard
-    document.getElementById('student-first-name').textContent = data.firstName || 'Student';
-    document.getElementById('student-full-name').textContent = data.fullName || 'N/A';
-    document.getElementById('student-number').textContent = data.studentNumber || 'N/A';
-    document.getElementById('student-program').textContent = data.program || 'N/A';
-    document.getElementById('current-semester').textContent = data.semester || 'N/A';
-    document.getElementById('current-school-year').textContent = data.schoolYear || 'N/A';
+    if(document.getElementById('student-first-name')) document.getElementById('student-first-name').textContent = data.firstName || 'Student';
+    if(document.getElementById('student-full-name')) document.getElementById('student-full-name').textContent = data.fullName || 'N/A';
+    if(document.getElementById('student-number')) document.getElementById('student-number').textContent = data.studentNumber || 'N/A';
+    if(document.getElementById('student-program')) document.getElementById('student-program').textContent = data.program || 'N/A';
+    if(document.getElementById('current-semester')) document.getElementById('current-semester').textContent = data.semester || 'N/A';
+    if(document.getElementById('current-school-year')) document.getElementById('current-school-year').textContent = data.schoolYear || 'N/A';
     
     // Profile
-    document.getElementById('profile-full-name').textContent = data.fullName || 'N/A';
-    document.getElementById('profile-degree').textContent = data.program || 'N/A';
-    document.getElementById('profile-year').textContent = `Year ${data.year || '--'}`;
-    document.getElementById('profile-student-number').textContent = data.studentNumber || 'N/A';
-    document.getElementById('profile-first-name').value = data.firstName || '';
-    document.getElementById('profile-middle-name').value = data.middleName || '';
-    document.getElementById('profile-last-name').value = data.lastName || '';
-    document.getElementById('profile-email').value = data.email || '';
-    document.getElementById('profile-dob').value = data.dateOfBirth || '';
-    document.getElementById('profile-phone').value = data.phone || '';
-    document.getElementById('profile-address').value = data.address || '';
+    if(document.getElementById('profile-full-name')) document.getElementById('profile-full-name').textContent = data.fullName || 'N/A';
+    if(document.getElementById('profile-degree')) document.getElementById('profile-degree').textContent = data.programName || data.program || 'N/A'; // Use programName if available
+    if(document.getElementById('profile-year')) document.getElementById('profile-year').textContent = `Year ${data.year || '--'}`;
+    if(document.getElementById('profile-student-number')) document.getElementById('profile-student-number').textContent = data.studentNumber || 'N/A';
+    if(document.getElementById('profile-first-name')) document.getElementById('profile-first-name').value = data.firstName || '';
+    if(document.getElementById('profile-middle-name')) document.getElementById('profile-middle-name').value = data.middleName || '';
+    if(document.getElementById('profile-last-name')) document.getElementById('profile-last-name').value = data.lastName || '';
+    if(document.getElementById('profile-email')) document.getElementById('profile-email').value = data.email || '';
+    
+    // Format Date for Input Field (YYYY-MM-DD)
+    if(document.getElementById('profile-dob')) {
+        let dob = data.dateOfBirth;
+        if (dob && new Date(dob).toString() !== 'Invalid Date') {
+            const d = new Date(dob);
+            dob = d.toISOString().split('T')[0];
+        }
+        document.getElementById('profile-dob').value = dob || '';
+    }
+
+    if(document.getElementById('profile-phone')) document.getElementById('profile-phone').value = data.phone || '';
+    if(document.getElementById('profile-address')) document.getElementById('profile-address').value = data.address || '';
 }
 
 function populateEnrolledCourses(courses) {
     const coursesGrid = document.getElementById('courses-grid');
     const courseCount = document.getElementById('course-count');
+    
+    if(!coursesGrid) return;
+
     coursesGrid.innerHTML = '';
     courseCount.textContent = courses.length;
 
@@ -76,6 +103,7 @@ function populateEnrolledCourses(courses) {
     
     courses.forEach((course, index) => {
         const courseCard = document.createElement('div');
+        // Only hide if index >= 4 AND view more button exists
         courseCard.className = 'course-card' + (index >= 4 ? ' hidden-course' : '');
         courseCard.innerHTML = `
             <span class="status-indicator status-${statusColors[index % statusColors.length]}"></span>
@@ -89,30 +117,41 @@ function populateEnrolledCourses(courses) {
 
     // Show/hide view more button
     const viewMoreBtn = document.getElementById('view-more-btn');
-    viewMoreBtn.style.display = courses.length > 4 ? 'flex' : 'none';
+    if(viewMoreBtn) viewMoreBtn.style.display = courses.length > 4 ? 'flex' : 'none';
+    
+    // Re-initialize View More in case it was clicked before reload
+    initializeViewMore(); 
 }
 
 function populateProgress(data) {
-    document.getElementById('overall-gwa').textContent = data.gwa || '--';
-    document.getElementById('academic-units').textContent = data.academicUnits || '--';
-    document.getElementById('non-academic-units').textContent = data.nonAcademicUnits || '--';
-    document.getElementById('total-units-earned').textContent = data.totalUnits || '--';
+    if(document.getElementById('overall-gwa')) document.getElementById('overall-gwa').textContent = data.gwa || '--';
+    if(document.getElementById('academic-units')) document.getElementById('academic-units').textContent = data.academicUnits || '--';
+    if(document.getElementById('non-academic-units')) document.getElementById('non-academic-units').textContent = data.nonAcademicUnits || '--';
+    if(document.getElementById('total-units-earned')) document.getElementById('total-units-earned').textContent = data.totalUnits || '--';
     
     const percentage = data.progressPercentage || 0;
-    document.getElementById('progress-percentage').textContent = `${percentage}%`;
-    document.getElementById('progress-label').textContent = data.progressLabel || 'Keep going!';
+    if(document.getElementById('progress-percentage')) document.getElementById('progress-percentage').textContent = `${percentage}%`;
+    if(document.getElementById('progress-label')) document.getElementById('progress-label').textContent = data.progressLabel || 'Keep going!';
     
     // Update progress circle
     const circle = document.getElementById('progress-circle');
-    const circumference = 408;
-    const offset = circumference - (percentage / 100) * circumference;
-    circle.style.strokeDashoffset = offset;
+    if (circle) {
+        const circumference = 408;
+        const offset = circumference - (percentage / 100) * circumference;
+        circle.style.strokeDashoffset = offset;
+    }
 }
 
 function populateScheduleTable(schedules) {
     const tbody = document.getElementById('schedule-table-body');
+    if(!tbody) return;
     tbody.innerHTML = '';
     
+    if (schedules.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding: 20px;">No schedule found for this period.</td></tr>';
+        return;
+    }
+
     schedules.forEach(schedule => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -123,8 +162,8 @@ function populateScheduleTable(schedules) {
             <td>${schedule.units}</td>
             <td>${schedule.schedule}</td>
             <td>${schedule.room}</td>
-            <td>${schedule.section}</td>
-            <td class="status ${schedule.status.toLowerCase()}">${schedule.status}</td>
+            <td>${schedule.section || 'N/A'}</td>
+            <td class="status ${schedule.status ? schedule.status.toLowerCase() : ''}">${schedule.status || 'Enrolled'}</td>
         `;
         tbody.appendChild(row);
     });
@@ -132,9 +171,10 @@ function populateScheduleTable(schedules) {
 
 function populateWeeklySchedule(schedules) {
     const weeklySchedule = document.getElementById('weekly-schedule');
+    if(!weeklySchedule) return;
     weeklySchedule.innerHTML = '';
     
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const scheduleByDay = {};
     
     // Group schedules by day
@@ -170,12 +210,13 @@ function populateWeeklySchedule(schedules) {
 
 function populateRegistrationTable(courses) {
     const tbody = document.getElementById('registration-table-body');
+    if(!tbody) return;
     tbody.innerHTML = '';
     
     courses.forEach((course, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" id="course-${index}" name="course-${index}" data-units="${course.units}"></td>
+            <td><input type="checkbox" id="course-${index}" name="${course.courseCode}" data-units="${course.units}"></td>
             <td>${course.courseName}</td>
             <td>${course.courseCode}</td>
             <td>${course.lecture}</td>
@@ -193,8 +234,14 @@ function populateRegistrationTable(courses) {
 
 function populateGradesTable(grades) {
     const tbody = document.getElementById('grades-table-body');
+    if(!tbody) return;
     tbody.innerHTML = '';
     
+    if (grades.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No grades found for this period.</td></tr>';
+        return;
+    }
+
     grades.forEach(grade => {
         const row = document.createElement('tr');
         const remarkClass = grade.remark.toLowerCase() === 'passed' ? 'passed' : 'failed';
@@ -212,41 +259,37 @@ function populateGradesTable(grades) {
 }
 
 function populateDropdowns(schoolYears, semesters) {
-    // Schedule dropdowns
-    const schoolYearSelect = document.getElementById('schoolYear');
-    const semesterSelect = document.getElementById('semester');
+    // Helper to populate a select element
+    const fillSelect = (selectId, items) => {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        select.innerHTML = ''; // Clear existing
+        items.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.value || item; // Handle objects or strings
+            option.textContent = item.label || item;
+            select.appendChild(option);
+        });
+    };
+
+    // Populate all dropdowns
+    fillSelect('schoolYear', schoolYears);
+    fillSelect('semester', semesters);
+    fillSelect('gradesSchoolYear', schoolYears);
+    fillSelect('gradesSemester', semesters);
+
+    // Set Default Values to the latest (matches database data)
+    const setDefaults = (ids) => {
+        ids.forEach(id => {
+            const el = document.getElementById(id);
+            if(el && el.options.length > 0) {
+                // Default to 2025-2026 (index 0 based on loadDropdowns order)
+                el.selectedIndex = 0; 
+            }
+        });
+    };
     
-    schoolYears.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        schoolYearSelect.appendChild(option);
-    });
-    
-    semesters.forEach(sem => {
-        const option = document.createElement('option');
-        option.value = sem.value;
-        option.textContent = sem.label;
-        semesterSelect.appendChild(option);
-    });
-    
-    // Grades dropdowns (clone the same options)
-    const gradesSchoolYear = document.getElementById('gradesSchoolYear');
-    const gradesSemester = document.getElementById('gradesSemester');
-    
-    schoolYears.forEach(year => {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        gradesSchoolYear.appendChild(option);
-    });
-    
-    semesters.forEach(sem => {
-        const option = document.createElement('option');
-        option.value = sem.value;
-        option.textContent = sem.label;
-        gradesSemester.appendChild(option);
-    });
+    setDefaults(['schoolYear', 'semester', 'gradesSchoolYear', 'gradesSemester']);
 }
 
 // ========================================
@@ -266,7 +309,7 @@ function initializeEnrollmentListeners() {
 
     checkboxes.forEach(cb => {
         cb.addEventListener('change', () => {
-            selectAllCheckbox.checked = Array.from(checkboxes).every(c => c.checked);
+            if(selectAllCheckbox) selectAllCheckbox.checked = Array.from(checkboxes).every(c => c.checked);
             updateTotalUnits();
         });
     });
@@ -282,7 +325,8 @@ function updateTotalUnits() {
         }
     });
     
-    document.getElementById('total-units').textContent = `Total Units: ${total}`;
+    const totalUnitsEl = document.getElementById('total-units');
+    if(totalUnitsEl) totalUnitsEl.textContent = `Total Units: ${total}`;
 }
 
 // ========================================
@@ -298,6 +342,9 @@ function calculateSemesterGWA() {
     let totalUnits = 0;
     
     rows.forEach(row => {
+        // Skip "No grades found" row
+        if (row.cells.length < 4) return;
+
         const units = parseInt(row.cells[2].textContent);
         const grade = parseFloat(row.cells[3].textContent);
         
@@ -326,22 +373,28 @@ function initializeViewMore() {
     let isExpanded = false;
 
     if (viewMoreBtn) {
-        viewMoreBtn.addEventListener('click', () => {
+        // Remove old listeners to prevent duplicates
+        const newBtn = viewMoreBtn.cloneNode(true);
+        viewMoreBtn.parentNode.replaceChild(newBtn, viewMoreBtn);
+
+        newBtn.addEventListener('click', () => {
             isExpanded = !isExpanded;
             const hiddenCourses = document.querySelectorAll('.hidden-course');
+            const btnText = document.getElementById('view-more-text');
+            const btnIcon = document.getElementById('view-more-icon');
             
             if (isExpanded) {
                 hiddenCourses.forEach(course => {
-                    course.style.display = 'block';
+                    course.style.display = 'flex'; // Changed to flex to maintain layout
                 });
-                viewMoreText.textContent = 'View Less';
-                viewMoreIcon.style.transform = 'rotate(180deg)';
+                if(btnText) btnText.textContent = 'View Less';
+                if(btnIcon) btnIcon.style.transform = 'rotate(180deg)';
             } else {
                 hiddenCourses.forEach(course => {
                     course.style.display = 'none';
                 });
-                viewMoreText.textContent = 'View More';
-                viewMoreIcon.style.transform = 'rotate(0deg)';
+                if(btnText) btnText.textContent = 'View More';
+                if(btnIcon) btnIcon.style.transform = 'rotate(0deg)';
             }
         });
     }
@@ -363,7 +416,6 @@ function initializeNavigation() {
             // Handle logout
             if (page === 'logout') {
                 if (confirm('Are you sure you want to logout?')) {
-                    // TODO: Implement logout logic
                     window.location.href = 'student.html';
                 }
                 return;
@@ -429,7 +481,6 @@ function initializePasswordUpdate() {
             const newPassword = document.getElementById('new-password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             
-            // Validation
             if (!currentPassword || !newPassword || !confirmPassword) {
                 alert('Please fill in all password fields');
                 return;
@@ -449,7 +500,6 @@ function initializePasswordUpdate() {
                 await updatePassword(currentPassword, newPassword);
                 alert('Password updated successfully!');
                 
-                // Clear form
                 document.getElementById('current-password').value = '';
                 document.getElementById('new-password').value = '';
                 document.getElementById('confirm-password').value = '';
@@ -485,7 +535,6 @@ function initializeEnrollmentSubmission() {
                 try {
                     await submitEnrollment(selectedCourses);
                     alert('Enrollment submitted successfully!');
-                    // Reload courses
                     loadEnrolledCourses();
                 } catch (error) {
                     alert('Error submitting enrollment: ' + error.message);
@@ -505,46 +554,33 @@ function initializeFilters() {
     const gradesSchoolYear = document.getElementById('gradesSchoolYear');
     const gradesSemester = document.getElementById('gradesSemester');
 
-    if (schoolYearSelect && semesterSelect) {
-        schoolYearSelect.addEventListener('change', async function() {
-            const schoolYear = this.value;
-            const semester = semesterSelect.value;
-            if (schoolYear && semester) {
-                const schedules = await fetchSchedule(schoolYear, semester);
-                populateScheduleTable(schedules.table || []);
-                populateWeeklySchedule(schedules.weekly || []);
+    const handleFilterChange = async (yearEl, semEl, type) => {
+        const year = yearEl.value;
+        const sem = semEl.value;
+        if(year && sem) {
+            if (type === 'schedule') {
+                try {
+                    const schedules = await fetchSchedule(year, sem);
+                    populateScheduleTable(schedules.table || []);
+                    populateWeeklySchedule(schedules.weekly || []);
+                } catch (e) { console.error(e); }
+            } else if (type === 'grades') {
+                try {
+                    const grades = await fetchGrades(year, sem);
+                    populateGradesTable(grades || []);
+                } catch (e) { console.error(e); }
             }
-        });
+        }
+    };
 
-        semesterSelect.addEventListener('change', async function() {
-            const schoolYear = schoolYearSelect.value;
-            const semester = this.value;
-            if (schoolYear && semester) {
-                const schedules = await fetchSchedule(schoolYear, semester);
-                populateScheduleTable(schedules.table || []);
-                populateWeeklySchedule(schedules.weekly || []);
-            }
-        });
+    if (schoolYearSelect && semesterSelect) {
+        schoolYearSelect.addEventListener('change', () => handleFilterChange(schoolYearSelect, semesterSelect, 'schedule'));
+        semesterSelect.addEventListener('change', () => handleFilterChange(schoolYearSelect, semesterSelect, 'schedule'));
     }
 
     if (gradesSchoolYear && gradesSemester) {
-        gradesSchoolYear.addEventListener('change', async function() {
-            const schoolYear = this.value;
-            const semester = gradesSemester.value;
-            if (schoolYear && semester) {
-                const grades = await fetchGrades(schoolYear, semester);
-                populateGradesTable(grades || []);
-            }
-        });
-
-        gradesSemester.addEventListener('change', async function() {
-            const schoolYear = gradesSchoolYear.value;
-            const semester = this.value;
-            if (schoolYear && semester) {
-                const grades = await fetchGrades(schoolYear, semester);
-                populateGradesTable(grades || []);
-            }
-        });
+        gradesSchoolYear.addEventListener('change', () => handleFilterChange(gradesSchoolYear, gradesSemester, 'grades'));
+        gradesSemester.addEventListener('change', () => handleFilterChange(gradesSchoolYear, gradesSemester, 'grades'));
     }
 }
 
@@ -590,8 +626,8 @@ async function loadAvailableCourses() {
 
 async function loadDropdowns() {
     try {
-        // TODO: Fetch from database
-        const schoolYears = ['2020-2021', '2021-2022', '2022-2023', '2023-2024', '2024-2025'];
+        // UPDATED: Added your actual DB years
+        const schoolYears = ['2025-2026', '2024-2025', '2023-2024'];
         const semesters = [
             { value: '1', label: 'First Semester' },
             { value: '2', label: 'Second Semester' }
@@ -599,6 +635,20 @@ async function loadDropdowns() {
         populateDropdowns(schoolYears, semesters);
     } catch (error) {
         console.error('Error loading dropdowns:', error);
+    }
+}
+
+async function loadCurrentSchedule() {
+    // Manually trigger the fetch for the default values (2025-2026 / 1st Sem)
+    const year = document.getElementById('schoolYear').value;
+    const sem = document.getElementById('semester').value;
+    if(year && sem) {
+        const schedules = await fetchSchedule(year, sem);
+        populateScheduleTable(schedules.table || []);
+        populateWeeklySchedule(schedules.weekly || []);
+        
+        const grades = await fetchGrades(year, sem);
+        populateGradesTable(grades || []);
     }
 }
 
@@ -611,15 +661,13 @@ async function loadInitialData() {
     await loadEnrolledCourses();
     await loadProgress();
     await loadAvailableCourses();
-    await loadDropdowns();
+    
+    // Load dropdowns FIRST, then load the schedule using those dropdown values
+    await loadDropdowns(); 
+    await loadCurrentSchedule();
 }
 
-// ========================================
-// PAGE LOAD
-// ========================================
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
     initializeNavigation();
     initializeProfileTabs();
     initializeViewMore();
@@ -628,6 +676,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePasswordUpdate();
     initializeFilters();
     
-    // Load data from database
     loadInitialData();
 });
