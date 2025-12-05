@@ -186,8 +186,16 @@ body {
 
 .student-details {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;  
+    
+    /* 1. CHANGE THIS: 'max-content' shrinks the column to fit the text exactly */
+    grid-template-columns: repeat(3, max-content);
+    
+    /* 2. ADJUST GAPS: 20px vertical, 80px horizontal (adjust 80px to your liking) */
+    gap: 20px 80px;  
+    
+    /* 3. ADD THIS: Prevents the grid from spreading out if there's extra space */
+    justify-content: start;
+    
     color: #494C53;
     font-size: 13px;
 }
@@ -454,16 +462,13 @@ tbody tr:hover {
     stroke-linecap: round;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
-    animation: fillProgress 2s ease-out forwards;
-}
-
-@keyframes fillProgress {
-    from {
-        stroke-dashoffset: 565;
-    }
-    to {
-        stroke-dashoffset: 0;
-    }
+    
+    /* ADD THIS: Tells the circle to use the size set by your JavaScript */
+    stroke-dasharray: 408; 
+    stroke-dashoffset: 408; /* Starts empty */
+    
+    /* ADD THIS: Makes it animate smoothly when JS changes the number */
+    transition: stroke-dashoffset 2s ease-out;
 }
 
 .progress-text {
