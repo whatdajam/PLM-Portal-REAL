@@ -57,6 +57,7 @@
     </div>
 
     <div class="main-content">
+        <!-- Dashboard Page -->
         <div id="dashboard-page" class="page-content active">
             <div class="page-header">
                 <h1>Dashboard</h1>
@@ -65,7 +66,7 @@
                     <div class="stat-card">
                         <div class="stat-info">
                             <div class="stat-label">Active Courses</div>
-                            <div class="stat-value">1</div>
+                            <div class="stat-value" id="active-courses-count">--</div>
                             <div class="stat-subtitle">Registered courses</div>
                         </div>
                         <div class="stat-icon green">
@@ -78,7 +79,7 @@
                     <div class="stat-card">
                         <div class="stat-info">
                             <div class="stat-label">Total Students</div>
-                            <div class="stat-value">47</div>
+                            <div class="stat-value" id="total-students-count">--</div>
                             <div class="stat-subtitle">Registered students</div>
                         </div>
                         <div class="stat-icon blue">
@@ -97,30 +98,17 @@
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
-                        <span>2</span>
+                        <span id="courses-page-count">0</span>
                     </div>
                 </div>
 
-                <div class="courses-grid">
-                    <div class="course-card">
-                        <span class="status-indicator green"></span>
-                        <div class="course-code">CSC 0212</div>
-                        <div class="course-title">Object Oriented Programming</div>
-                        <div class="course-section">BSCS 2-3</div>
-                        <div class="course-schedule">Friday 10:00AM-12:00PM · GCA 309</div>
-                    </div>
-
-                    <div class="course-card">
-                        <span class="status-indicator green"></span>
-                        <div class="course-code">CSC 0212</div>
-                        <div class="course-title">Object Oriented Programming</div>
-                        <div class="course-section">BSCS 2-4</div>
-                        <div class="course-schedule">Monday 10:00AM-12:00PM · GCA 309</div>
-                    </div>
+                <div class="courses-grid" id="dashboard-courses-grid">
+                    <!-- Courses will be populated from database -->
                 </div>
             </div>
         </div>
 
+        <!-- Course Management Page -->
         <div id="courses-page" class="page-content">
             <div class="section-card">
                 <h2 class="section-title">Course Schedule</h2>
@@ -128,23 +116,20 @@
                 <div class="filter-section">
                     <div class="select-wrapper">
                         <select id="schoolYear">
-                            <option value="">School Year</option>
-                            <option value="2023-2024">2023-2024</option>
-                            <option value="2024-2025" selected>2024-2025</option>
+                            <option value="" selected>School Year</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="semester">
-                            <option value="">Semester</option>
-                            <option value="1" selected>1st Semester</option>
-                            <option value="2">2nd Semester</option>
+                            <option value="" selected>Semester</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="program">
-                            <option value="">Program</option>
-                            <option value="BSCS" selected>BSCS</option>
-                            <option value="BSIT">BSIT</option>
+                            <option value="" selected>Program</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                 </div>
@@ -162,22 +147,7 @@
                             </tr>
                         </thead>
                         <tbody id="courseScheduleTable">
-                            <tr>
-                                <td>Object Oriented Programming</td>
-                                <td>CSC 0212</td>
-                                <td>3</td>
-                                <td>Fri 10:00AM-12:00PM</td>
-                                <td>BSCS 2-3</td>
-                                <td>GCA 309</td>
-                            </tr>
-                            <tr>
-                                <td>Object Oriented Programming</td>
-                                <td>CSC 0212</td>
-                                <td>3</td>
-                                <td>Mon 10:00AM-12:00PM</td>
-                                <td>BSCS 2-4</td>
-                                <td>GCA 309</td>
-                            </tr>
+                            <!-- Data will be populated from database -->
                         </tbody>
                     </table>
                 </div>
@@ -189,36 +159,32 @@
                 <div class="filter-section">
                     <div class="select-wrapper">
                         <select id="studentSchoolYear">
-                            <option value="">School Year</option>
-                            <option value="2023-2024">2023-2024</option>
-                            <option value="2024-2025" selected>2024-2025</option>
+                            <option value="" selected>School Year</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="studentSemester">
-                            <option value="">Semester</option>
-                            <option value="1" selected>1st Semester</option>
-                            <option value="2">2nd Semester</option>
+                            <option value="" selected>Semester</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="studentProgram">
-                            <option value="">Program</option>
-                            <option value="BSCS" selected>BSCS</option>
-                            <option value="BSIT">BSIT</option>
+                            <option value="" selected>Program</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="studentCourse">
-                            <option value="">Course</option>
-                            <option value="CSC0212" selected>Object Oriented Programming</option>
+                            <option value="" selected>Course</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
                         <select id="studentSection">
-                            <option value="">Section</option>
-                            <option value="BSCS2-3" selected>BSCS 2-3</option>
-                            <option value="BSCS2-4">BSCS 2-4</option>
+                            <option value="" selected>Section</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                 </div>
@@ -234,67 +200,47 @@
                             </tr>
                         </thead>
                         <tbody id="studentOverviewTable">
-                            <tr>
-                                <td>202012345</td>
-                                <td>Juan Dela Cruz</td>
-                                <td><span class="passed-tag">Active</span></td>
-                                <td>juandelacruz@plm.com</td>
-                            </tr>
-                            <tr>
-                                <td>202000001</td>
-                                <td>Maria Clara</td>
-                                <td><span class="passed-tag">Active</span></td>
-                                <td>mariaclara@plm.com</td>
-                            </tr>
+                            <!-- Data will be populated from database -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <!-- Grades Page -->
         <div id="grades-page" class="page-content">
             <div class="section-card">
                 <h2 class="section-title">Grades Submission</h2>
 
                 <div class="filter-section">
                     <div class="select-wrapper">
-                        <select>
-                            <option selected disabled>Select School Year</option>
-                            <option>2023-2024</option>
-                            <option>2024-2025</option>
-                            <option>2025-2026</option>
+                        <select id="gradesSchoolYear">
+                            <option value="" selected disabled>Select School Year</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
-                        <select>
-                            <option selected disabled>Select Semester</option>
-                            <option>1st Semester</option>
-                            <option>2nd Semester</option>
-                            <option>Summer</option>
+                        <select id="gradesSemester">
+                            <option value="" selected disabled>Select Semester</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
-                        <select>
-                            <option selected disabled>Select Program</option>
-                            <option>BSIT</option>
-                            <option>BSCS</option>
-                            <option>BSCpE</option>
+                        <select id="gradesProgram">
+                            <option value="" selected disabled>Select Program</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
-                        <select>
-                            <option selected disabled>Select Course</option>
-                            <option>Object Oriented Programming</option>
-                            <option>Information Management</option>
-                            <option>Living in the IT Era</option>
+                        <select id="gradesCourse">
+                            <option value="" selected disabled>Select Course</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                     <div class="select-wrapper">
-                        <select>
-                            <option selected disabled>Select Section</option>
-                            <option>BSCS 2-1</option>
-                            <option>BSCS 2-2</option>
-                            <option>BSCS 2-3</option>
+                        <select id="gradesSection">
+                            <option value="" selected disabled>Select Section</option>
+                            <!-- Options will be populated from database -->
                         </select>
                     </div>
                 </div>
@@ -309,19 +255,8 @@
                                 <th>Remark</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>202012345</td>
-                                <td>Juan Dela Cruz</td>
-                                <td class="grade-cell">1</td>
-                                <td><span class="passed-tag">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td>202000001</td>
-                                <td>Maria Clara</td>
-                                <td class="grade-cell">1.25</td>
-                                <td><span class="passed-tag">Passed</span></td>
-                            </tr>
+                        <tbody id="gradesTableBody">
+                            <!-- Data will be populated from database -->
                         </tbody>
                     </table>
                 </div>
@@ -333,6 +268,7 @@
             </div>
         </div>
 
+        <!-- Profile Page -->
         <div id="profile-page" class="page-content">
             <div class="profile-tabs">
                 <button class="tab-btn active" data-tab="profile">Profile</button>
@@ -351,7 +287,7 @@
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                             </svg>
                         </div>
-                        <div class="profile-name">Crisostomo Ibarra</div>
+                        <div class="profile-name" id="profile-full-name">Loading...</div>
                         <div class="profile-role">Faculty</div>
                     </div>
                 </div>
@@ -364,15 +300,15 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-input" value="Crisostomo" placeholder="First Name" disabled>
+                            <input type="text" class="form-input" id="profile-first-name" placeholder="First Name" disabled>
                         </div>
                         <div class="form-group">
                             <label>Middle Name</label>
-                            <input type="text" class="form-input" value="N/A" placeholder="Middle Name" disabled>
+                            <input type="text" class="form-input" id="profile-middle-name" placeholder="Middle Name" disabled>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-input" value="Ibarra" placeholder="Last Name" disabled>
+                            <input type="text" class="form-input" id="profile-last-name" placeholder="Last Name" disabled>
                         </div>
                     </div>
 
@@ -383,7 +319,7 @@
                                 <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                 </svg>
-                                <input type="email" class="form-input with-icon" value="crisostomoibarra@gmail.com" placeholder="Email Address" disabled>
+                                <input type="email" class="form-input with-icon" id="profile-email" placeholder="Email Address" disabled>
                             </div>
                         </div>
 
@@ -393,7 +329,7 @@
                                 <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
-                                <input type="text" class="form-input with-icon" value="01/01/1999" placeholder="MM/DD/YYYY" disabled>
+                                <input type="text" class="form-input with-icon" id="profile-dob" placeholder="MM/DD/YYYY" disabled>
                             </div>
                         </div>
                     </div>
@@ -404,7 +340,7 @@
                             <svg class="input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
-                            <input type="tel" class="form-input with-icon" value="+63 09991234567" placeholder="Phone Number" disabled>
+                            <input type="tel" class="form-input with-icon" id="profile-phone" placeholder="Phone Number" disabled>
                         </div>
                     </div>
 
@@ -415,7 +351,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
-                            <input type="text" class="form-input with-icon" value="123 Rizal Avenue, Barangay San Antonio, Makati City, 1200, Philippines" placeholder="Address" disabled>
+                            <input type="text" class="form-input with-icon" id="profile-address" placeholder="Address" disabled>
                         </div>
                     </div>
                 </div>
@@ -439,137 +375,31 @@
                     <div class="security-card">
                         <div class="card-header">
                             <h3>Change Password</h3>
-                            <p class="last-changed">Last changed: December 1, 2025</p>
+                            <p class="last-changed" id="password-last-changed">Last changed: --</p>
                         </div>
 
                         <div class="security-input">
                             <label>Current Password</label>
-                            <input type="password" placeholder="Enter current password">
+                            <input type="password" id="current-password" placeholder="Enter current password">
                         </div>
 
                         <div class="security-input">
                             <label>New Password</label>
-                            <input type="password" placeholder="Enter new password">
+                            <input type="password" id="new-password" placeholder="Enter new password">
                         </div>
 
                         <div class="security-input">
                             <label>Confirm New Password</label>
-                            <input type="password" placeholder="Re-enter new password">
+                            <input type="password" id="confirm-password" placeholder="Re-enter new password">
                         </div>
 
-                        <button class="save-btn">Update Password</button>
+                        <button class="save-btn" id="update-password-btn">Update Password</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // --- 1. Navigation Logic ---
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const page = this.getAttribute('data-page');
-                
-                if (page === 'logout') {
-                    if (confirm('Are you sure you want to logout?')) {
-                        window.location.href = 'faculty.html';
-                    }
-                    return;
-                }
-                
-                navItems.forEach(nav => nav.classList.remove('active'));
-                this.classList.add('active');
-                
-                document.querySelectorAll('.page-content').forEach(p => {
-                    p.classList.remove('active');
-                });
-                
-                const selectedPage = document.getElementById(page + '-page');
-                if (selectedPage) {
-                    selectedPage.classList.add('active');
-                }
-            });
-        });
-
-        // --- 2. Tab Logic (Profile/Security) ---
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                
-                this.classList.add('active');
-                const targetTab = document.getElementById(tabName + '-tab');
-                if (targetTab) targetTab.classList.add('active');
-            });
-        });
-
-        // --- 3. Grades Table Logic ---
-        let editing = false;
-
-        function enableEditing() {
-            const gradeCells = document.querySelectorAll('.grade-cell');
-            gradeCells.forEach(cell => {
-                const currentValue = cell.innerText;
-                cell.innerHTML = `<input type='number' step='0.25' min='1' max='5' value='${currentValue}' style='width:60px; padding:4px; font-size:13px; border:1px solid #ccc; border-radius:4px;'>`;
-            });
-        }
-
-        function saveEditing() {
-            const gradeCells = document.querySelectorAll('.grade-cell');
-            gradeCells.forEach(cell => {
-                const input = cell.querySelector('input');
-                if (input) {
-                    cell.innerHTML = input.value;
-                }
-            });
-        }
-
-        const editBtn = document.getElementById('editGrades');
-        editBtn.addEventListener('click', () => {
-            if (!editing) {
-                enableEditing();
-                editBtn.innerText = "Save";
-                editBtn.classList.remove('black-btn');
-                editBtn.classList.add('blue-btn');
-                editing = true;
-            } else {
-                saveEditing();
-                editBtn.innerText = "Edit Grades";
-                editBtn.classList.remove('blue-btn');
-                editBtn.classList.add('black-btn');
-                editing = false;
-            }
-        });
-
-        const submitBtn = document.getElementById('submitGrades');
-        submitBtn.addEventListener('click', () => {
-            if (editing) {
-                alert("Please save the grades before submitting.");
-                return;
-            }
-
-            const confirmSubmit = confirm("Confirm submission?");
-            if (!confirmSubmit) return;
-
-            const rows = document.querySelectorAll('#gradesTable tbody tr');
-            let output = [];
-
-            rows.forEach(row => {
-                const id = row.children[0].innerText;
-                const name = row.children[1].innerText;
-                const grade = row.children[2].innerText;
-                output.push({ id, name, grade });
-            });
-
-            console.log("Submitted Grades", output);
-            alert("Grades submitted successfully!");
-        });
-    </script>
+    <script src="facultyDashboard.js"></script>
 </body>
 </html>
