@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="faculty.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLM Portal - Faculty Login</title>
+    <link rel="preload" href="faculty/background.svg" as="image">
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <div class="left-section">
+            <div class="logo">
+                <img src="faculty/plm.svg" alt="PLM Logo">
+            </div>
+            <div class="welcome-text">
+                Welcome to<br>PLM Portal
+            </div>
+        </div>
+
+        <div class="login-card">
+            <a class="back-button" onclick="BackButton(); return false;">
+                <svg class="back-arrow" viewBox="0 0 14 10" fill="none">
+                    <path d="M1 5H13M1 5L5 1M1 5L5 9" stroke="#171717" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Back
+            </a>
+
+            <div class="form-group">
+                <label class="form-label" for="faculty-username">Faculty Number</label>
+                <input type="text" id="faculty-username" name="faculty-username" class="form-input" placeholder="EMP123">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="faculty-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="faculty-password" name="faculty-password" class="form-input" placeholder="••••••••••">
+                    <img id="faculty-eye-icon" class="toggle-password" onclick="togglePassword()" src="faculty/passOn.svg" alt="Toggle password visibility">
+                </div>
+            </div>
+
+            <button class="login-button" onclick="handleLogin()">Log in</button>
+
+            <div class="form-footer">
+                <label class="remember-me">
+                    <input type="checkbox" id="faculty-remember" name="faculty-remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password" onclick="forgotPassword(); return false;">Forgot Password</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="faculty-login.js"></script>
+</body>
+</html>
